@@ -7,7 +7,7 @@ Begin Window MainWindow
    FullScreen      =   False
    HasBackgroundColor=   False
    HasCloseButton  =   True
-   HasFullScreenButton=   False
+   HasFullScreenButton=   True
    HasMaximizeButton=   True
    HasMinimizeButton=   True
    Height          =   400
