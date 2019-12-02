@@ -34,7 +34,9 @@ Protected Class IntCodeComputer
 		    Case 99
 		      Terminate
 		    Else
-		      Raise New RuntimeException
+		      Var E As New RuntimeException
+		      E.Message = "OpCode (" + OpCode.ToString + ") is not valid"
+		      Raise E
 		    End Select
 		  Loop Until Terminated Or InstructionPointer >= Memory.Count
 		  

@@ -372,10 +372,14 @@ End
 		    Computer = BuildComputerWithMemory(Memory)
 		    AddHandler Computer.Finished, WeakAddressOf HandleFinishedEvent
 		    Computer.Run
+		  Catch E As OutOfBoundsException
+		    MessageDialog.Show "The memory address is beyond the limits."
 		  Catch E As RuntimeException
-		    MessageDialog.Show "The computer has encountered an invalid opcode and must stop its execution."
-		    HandleFinishedEvent(Computer)
+		    MessageDialog.Show "The computer has encountered an invalid opcode and must stop its execution:" + _
+		    EndOfLine + E.Message
 		  End Try
+		  
+		  HandleFinishedEvent(Computer)
 		End Sub
 	#tag EndMethod
 
