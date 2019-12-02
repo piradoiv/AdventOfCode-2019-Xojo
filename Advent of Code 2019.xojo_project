@@ -16,6 +16,7 @@ Window=CsvDialog;Day 2/CsvDialog.xojo_window;&h000000004B6B97FF;&h000000005203AF
 Folder=Icons;Icons;&h0000000010047FFF;&h0000000000000000;false
 MultiImage=biodiesel;Icons/biodiesel.xojo_image;&h000000006BCF7FFF;&h0000000010047FFF;false
 MultiImage=laptop;Icons/laptop.xojo_image;&h00000000242E17FF;&h0000000010047FFF;false
+Class=FuelCalculator;Day 1/FuelCalculator.xojo_code;&h000000005943CFFF;&h00000000167687FF;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

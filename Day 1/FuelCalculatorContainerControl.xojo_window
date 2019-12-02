@@ -186,36 +186,25 @@ Begin ContainerControl FuelCalculatorContainerControl
       Visible         =   True
       Width           =   260
    End
+   Begin FuelCalculator Calculator
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Method, Flags = &h0
-		Function CalcFuel(Mass As Integer) As Integer
-		  Var Result As Integer
-		  Var Fuel As Integer = Mass
-		  
-		  Do
-		    Fuel = Max(Floor(Fuel / 3) - 2, 0)
-		    Result = Result + Fuel
-		  Loop Until Fuel = 0
-		  
-		  Return Result
-		End Function
-	#tag EndMethod
-
-
 #tag EndWindowCode
 
 #tag Events InputTextArea
 	#tag Event
 		Sub TextChange()
 		  ResultTextField.Value = "0"
-		  Var Lines() As String = InputTextArea.Value.Split(EndOfLine)
-		  For Each Line As String In Lines
-		    Var NewValue As Integer = ResultTextField.Value.Val + CalcFuel(Line.Val)
-		    ResultTextField.Value = NewValue.ToString
-		  Next
+		  Var Modules() As Integer = Calculator.GetModulesFromRawString(InputTextArea.Value)
+		  Var Result As Integer = Calculator.CalculateFuelNeededForAllModules(Modules)
+		  ResultTextField.Value = Result.ToString
 		End Sub
 	#tag EndEvent
 #tag EndEvents
