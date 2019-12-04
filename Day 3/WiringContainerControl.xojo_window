@@ -198,42 +198,26 @@ End
 		    Return CachedGridPicture
 		  End If
 		  
-		  Var Bounds() As Coordinate
-		  Bounds.AddRow New Coordinate
-		  Bounds.AddRow New Coordinate
-		  For Each w As Wire In Wires
-		    If w.Bounds(0).X < Bounds(0).X Then Bounds(0).X = w.Bounds(0).X
-		    If w.Bounds(0).Y < Bounds(0).Y Then Bounds(0).Y = w.Bounds(0).Y
-		    If w.Bounds(1).X > Bounds(1).X Then Bounds(1).X = w.Bounds(1).X
-		    If w.Bounds(1).Y > Bounds(1).Y Then Bounds(1).Y = w.Bounds(1).Y
-		  Next
-		  
-		  Var BoundsWidth As Integer = Max(1, Abs(Bounds(1).X) + Abs(Bounds(0).X))
-		  Var BoundsHeight As Integer = Max(1, Abs(Bounds(1).Y) + Abs(Bounds(0).Y))
-		  
-		  Var NewPicture As New Picture(BoundsWidth, BoundsHeight)
+		  Var NewPicture As New Picture(WiresCanvas.Width, WiresCanvas.Height)
 		  Var g As Graphics = NewPicture.Graphics
 		  
-		  Var OffsetX As Integer = 0'- (g.Width / 2)
-		  Var OffsetY As Integer = 0'- (g.Height / 2)
+		  Var WiresWidth, WiresHeight As Integer
+		  For Each w As Wire In Wires
+		    WiresWidth = Max(WiresWidth, Abs(w.Bounds(0).X) + Abs(w.Bounds(1).X))
+		    WiresHeight = Max(WiresHeight, Abs(w.Bounds(0).Y) + Abs(w.Bounds(1).Y))
+		  Next
 		  
-		  g.DrawingColor = Color.RGB(25, 25, 25)
-		  g.FillRectangle 0, 0, g.Width, g.Height
-		  g.DrawingColor = Color.Blue
-		  g.FillRectangle OffsetX * GridSize, OffsetY * GridSize, GridSize, GridSize
+		  Var OffsetX As Integer = g.Width / 2' - WiresWidth / 2
+		  Var OffsetY As Integer = g.Height / 2' + WiresHeight / 2
 		  
-		  For I As Integer = 0 To Wires.Count - 1
-		    Var c As Wire = Wires(I)
-		    Var PreviousCoord As New Coordinate
-		    
-		    For J As Integer = 0 To c.LinearCoordinates.Count - 1
-		      Var coord As Coordinate = c.LinearCoordinates(J)
-		      g.DrawingColor = Color.HSV((I * 15 Mod 100) / 100, 1, 1, J * 4)
-		      g.PenSize = GridSize
-		      g.DrawLine (PreviousCoord.X + OffsetX) * GridSize, (PreviousCoord.Y + OffsetY) * GridSize, _
-		      (coord.X + OffsetX) * GridSize, (coord.Y + OffsetY) * GridSize
-		      PreviousCoord.X = coord.X
-		      PreviousCoord.Y = coord.Y
+		  Var WireIndex As Integer = 0
+		  For Each w As Wire In Wires
+		    WireIndex = WireIndex + 1
+		    Var PrevCoord As New Coordinate
+		    g.DrawingColor = Color.HSV(WireIndex * 12 / 100, 1, 1)
+		    For Each c As Coordinate In w.LinearCoordinates
+		      g.DrawLine PrevCoord.X + OffsetX, PrevCoord.Y + OffsetY, c.X + OffsetX, c.Y + OffsetY
+		      PrevCoord = c
 		    Next
 		  Next
 		  
@@ -283,7 +267,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		GridSize As Integer = 1
+		GridSize As Integer = 4
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -339,7 +323,9 @@ End
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  Var p As Picture = GetGridPicture
-		  g.DrawPicture p, 0, 0, g.Width, g.Height, 0, 0, p.Width, p.Height
+		  g.DrawingColor = &c222222
+		  g.FillRectangle 0, 0, g.Width, g.Height
+		  g.DrawPicture(p, 0, 0, g.Width, g.Height, 0, 0, p.Width, p.Height)
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -136,7 +136,6 @@ Begin Window MainWindow
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
-         MaximumSteps    =   0
          PreviousCsv     =   ""
          Scope           =   0
          TabIndex        =   0
