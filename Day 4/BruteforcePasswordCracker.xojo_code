@@ -69,7 +69,8 @@ Inherits Thread
 		  
 		  Var IsThereAnyValidAdjacent As Boolean = False
 		  For Each AdjacentsEntry As DictionaryEntry In Adjacents
-		    If AdjacentsEntry.Value <> 2 Then Continue
+		    If AdditionalRules And AdjacentsEntry.Value <> 2 Then Continue
+		    If AdjacentsEntry.Value < 2 Then Continue
 		    IsThereAnyValidAdjacent = True
 		    Exit For
 		  Next
@@ -98,6 +99,10 @@ Inherits Thread
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		AdditionalRules As Boolean = False
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		Finish As Integer
@@ -167,6 +172,14 @@ Inherits Thread
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AdditionalRules"
+			Visible=false
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

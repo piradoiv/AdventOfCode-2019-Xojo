@@ -10,7 +10,7 @@ Begin ContainerControl PadlockContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   394
+   Height          =   400
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -24,7 +24,7 @@ Begin ContainerControl PadlockContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   534
+   Width           =   600
    Begin TextField RangeFromTextField
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
@@ -172,7 +172,7 @@ Begin ContainerControl PadlockContainerControl
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   264
+      Height          =   270
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
@@ -226,7 +226,7 @@ Begin ContainerControl PadlockContainerControl
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   354
+      Top             =   360
       Transparent     =   False
       Underline       =   False
       Value           =   "#CounterLabel_Value"
@@ -283,11 +283,11 @@ Begin ContainerControl PadlockContainerControl
       TabIndex        =   6
       TabPanelIndex   =   0
       Tooltip         =   ""
-      Top             =   354
+      Top             =   360
       Transparent     =   False
       Value           =   1.0
       Visible         =   False
-      Width           =   134
+      Width           =   200
    End
    Begin PopupMenu MethodPopupMenu
       AllowAutoDeactivate=   True
@@ -365,12 +365,12 @@ Begin ContainerControl PadlockContainerControl
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   229
+      Height          =   129
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
       Left            =   260
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
@@ -387,9 +387,9 @@ Begin ContainerControl PadlockContainerControl
       Top             =   113
       Transparent     =   False
       Underline       =   False
-      Value           =   "- It is a six-digit number\n- The value is within the range given in your puzzle input\n- Two adjacent digits are the same (like 22 in 122345)\n- Going from left to right, the digits never decrease; they only ever increase or stay the same\n- The two adjacent matching digits are not part of a larger group of matching digits"
+      Value           =   "- It is a six-digit number\n- The value is within the range given in your puzzle input\n- Two adjacent digits are the same (like 22 in 122345)\n- Going from left to right, the digits never decrease; they only ever increase or stay the same"
       Visible         =   True
-      Width           =   254
+      Width           =   320
    End
    Begin Label RulesTitleLabel
       AllowAutoDeactivate=   True
@@ -424,7 +424,7 @@ Begin ContainerControl PadlockContainerControl
       Underline       =   False
       Value           =   "Password Rules:"
       Visible         =   True
-      Width           =   254
+      Width           =   320
    End
    Begin PushButton ResetPushButton
       AllowAutoDeactivate=   True
@@ -440,7 +440,7 @@ Begin ContainerControl PadlockContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   244
+      Left            =   260
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -452,11 +452,113 @@ Begin ContainerControl PadlockContainerControl
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   322
+      Top             =   328
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   80
+   End
+   Begin Label Label1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   42
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   260
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   274
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "- The two adjacent matching digits are not part of a larger group of matching digits"
+      Visible         =   True
+      Width           =   320
+   End
+   Begin Label RulesTitleLabel1
+      AllowAutoDeactivate=   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   260
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   242
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "Additional Rules:"
+      Visible         =   True
+      Width           =   117
+   End
+   Begin CheckBox EnableAdditionalRulesCheckBox
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Enable"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   389
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   242
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      VisualState     =   "0"
+      Width           =   192
    End
 End
 #tag EndWindow
@@ -471,6 +573,7 @@ End
 		    PasswordCracker = New SmartElfPasswordCracker
 		  End Select
 		  AddHandler PasswordCracker.UserInterfaceUpdate, WeakAddressOf UserInterfaceUpdateHandler
+		  PasswordCracker.AdditionalRules = EnableAdditionalRulesCheckBox.Value
 		End Sub
 	#tag EndMethod
 

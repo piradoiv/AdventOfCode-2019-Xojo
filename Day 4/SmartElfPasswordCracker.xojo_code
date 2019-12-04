@@ -4,6 +4,10 @@ Inherits BruteforcePasswordCracker
 	#tag Method, Flags = &h0
 		Function GetNextPasswordCandidate(CurrentPassword As Integer) As Integer
 		  CurrentPassword = CurrentPassword + 1
+		  If FirstLoop Then
+		    CurrentPassword = CurrentPassword - 10000
+		    FirstLoop = False
+		  End If
 		  
 		  Var PasswordChars() As String = CurrentPassword.ToString.Split("")
 		  Var Previous, Current As Integer
@@ -19,7 +23,20 @@ Inherits BruteforcePasswordCracker
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		FirstLoop As Boolean = True
+	#tag EndProperty
+
+
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="AdditionalRules"
+			Visible=false
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
@@ -74,6 +91,14 @@ Inherits BruteforcePasswordCracker
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FirstLoop"
+			Visible=false
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

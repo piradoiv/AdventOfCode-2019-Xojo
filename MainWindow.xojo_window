@@ -50,7 +50,6 @@ Begin Window MainWindow
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   "True"
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -69,7 +68,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -99,7 +97,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -132,7 +129,6 @@ Begin Window MainWindow
          GridSize        =   4
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -164,7 +160,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
