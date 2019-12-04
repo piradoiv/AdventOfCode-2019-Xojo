@@ -3,12 +3,14 @@ Protected Class SmartElfPasswordCracker
 Inherits BruteforcePasswordCracker
 	#tag Method, Flags = &h0
 		Function GetNextPasswordCandidate(CurrentPassword As Integer) As Integer
-		  Var Password As Integer = CurrentPassword + 1
-		  Var PasswordChars() As String = Password.ToString.Split("")
+		  CurrentPassword = CurrentPassword + 1
+		  
+		  Var PasswordChars() As String = CurrentPassword.ToString.Split("")
+		  Var Previous, Current As Integer
 		  
 		  For I As Integer = 1 To PasswordChars.Count - 1
-		    Var Previous As Integer = PasswordChars(I - 1).Val
-		    Var Current As Integer = Max(Previous, PasswordChars(I).Val)
+		    Previous = PasswordChars(I - 1).Val
+		    Current = Max(Previous, PasswordChars(I).Val)
 		    PasswordChars(I) = Current.ToString
 		  Next
 		  
