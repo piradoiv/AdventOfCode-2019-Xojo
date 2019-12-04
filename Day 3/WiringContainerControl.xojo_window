@@ -25,197 +25,16 @@ Begin ContainerControl WiringContainerControl
    Transparent     =   True
    Visible         =   True
    Width           =   528
-   Begin Canvas WiringCanvas
-      AllowAutoDeactivate=   True
-      AllowFocus      =   False
-      AllowFocusRing  =   True
-      AllowTabs       =   False
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      Height          =   322
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   52
-      Transparent     =   True
-      Visible         =   True
-      Width           =   299
-   End
-   Begin PushButton LoadFromCsvPushButton
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Cancel          =   False
-      Caption         =   "Load from CSV"
-      Default         =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      MacButtonStyle  =   "0"
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   116
-   End
-   Begin Label GridSizeLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   397
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Zoom level:"
-      Visible         =   True
-      Width           =   79
-   End
-   Begin Slider GridSizeSlider
-      AllowAutoDeactivate=   True
-      AllowLiveScrolling=   True
-      Enabled         =   True
-      Height          =   23
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   111
-      LineStep        =   1
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      MaximumValue    =   20
-      MinimumValue    =   1
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickMarkStyle   =   "0"
-      Tooltip         =   ""
-      Top             =   399
-      Transparent     =   False
-      Value           =   6
-      Visible         =   True
-      Width           =   100
-   End
-   Begin ScrollBar VerticalScrollBar
-      AllowAutoDeactivate=   True
-      AllowFocus      =   True
-      AllowLiveScrolling=   True
-      Enabled         =   True
-      Height          =   322
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   318
-      LineStep        =   1
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      MaximumValue    =   5000
-      MinimumValue    =   0
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   52
-      Transparent     =   False
-      Value           =   2500
-      Visible         =   True
-      Width           =   15
-   End
-   Begin ScrollBar HorizontalScrollBar
-      AllowAutoDeactivate=   True
-      AllowFocus      =   True
-      AllowLiveScrolling=   True
-      Enabled         =   True
-      Height          =   15
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   20
-      LineStep        =   1
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      MaximumValue    =   5000
-      MinimumValue    =   0
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   7
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   372
-      Transparent     =   False
-      Value           =   2500
-      Visible         =   True
-      Width           =   299
-   End
    Begin Listbox CrossedWiresListbox
       AllowAutoDeactivate=   True
       AllowAutoHideScrollbars=   True
       AllowExpandableRows=   False
-      AllowFocusRing  =   True
+      AllowFocusRing  =   False
       AllowResizableColumns=   False
       AllowRowDragging=   False
       AllowRowReordering=   False
       Bold            =   False
-      ColumnCount     =   2
+      ColumnCount     =   3
       ColumnWidths    =   ""
       DataField       =   ""
       DataSource      =   ""
@@ -227,22 +46,22 @@ Begin ContainerControl WiringContainerControl
       FontUnit        =   0
       GridLinesHorizontalStyle=   "0"
       GridLinesVerticalStyle=   "0"
-      HasBorder       =   True
+      HasBorder       =   False
       HasHeader       =   True
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   298
+      Height          =   152
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Distance	Steps"
+      InitialValue    =   "Position	Distance	Steps"
       Italic          =   False
-      Left            =   345
+      Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
+      LockLeft        =   True
       LockRight       =   True
-      LockTop         =   True
+      LockTop         =   False
       RequiresSelection=   False
       RowSelectionType=   "0"
       Scope           =   0
@@ -250,48 +69,71 @@ Begin ContainerControl WiringContainerControl
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   76
+      Top             =   290
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   163
+      Width           =   528
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Label CrossedWiresLabel
+   Begin Canvas WiresCanvas
       AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
+      AllowFocus      =   False
+      AllowFocusRing  =   False
+      AllowTabs       =   False
+      Backdrop        =   0
       Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
+      Height          =   290
       Index           =   -2147483648
       InitialParent   =   ""
-      Italic          =   False
-      Left            =   345
-      LockBottom      =   False
+      Left            =   0
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
+      LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Multiline       =   False
       Scope           =   0
-      Selectable      =   False
-      TabIndex        =   9
+      TabIndex        =   10
       TabPanelIndex   =   0
       TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   52
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Crossed wires:"
+      Top             =   0
+      Transparent     =   True
       Visible         =   True
-      Width           =   161
+      Width           =   528
+      Begin PushButton LoadFromCsvPushButton
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Load from CSV"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "WiresCanvas"
+         Italic          =   False
+         Left            =   392
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         MacButtonStyle  =   "0"
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   116
+      End
    End
 End
 #tag EndWindow
@@ -299,85 +141,55 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  GridSize = GridSizeSlider.Value
+		  Intersections = New Dictionary
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Resized()
-		  InvalidateGrid
+		  InvalidateCanvas
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Resizing()
-		  InvalidateGrid
+		  WiresCanvas.Invalidate
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h0
 		Sub CalculateIntersections()
-		  Var Result() As Intersection
+		  Intersections.RemoveAll
 		  
-		  For Each WireSteps As String In PreviousCsv.Split(EndOfLine)
-		    Var Parts() As String = WireSteps.Split(",")
-		    Var PreviousCoord As New Coordinate
-		    For Each Segment As String In Parts
-		      Var CurrentChar As String = Segment.Left(1)
-		      Var Amount As Integer = Segment.Right(Segment.Length - 1).Val
-		      
-		      Var c As New Coordinate
-		      c.X = PreviousCoord.X
-		      c.Y = PreviousCoord.Y
-		      
-		      Select Case CurrentChar
-		      Case "D"
-		        c.Y = c.Y + Amount
-		      Case "U"
-		        c.Y = c.Y - Amount
-		      Case "R"
-		        c.X = c.X + Amount
-		      Case "L"
-		        c.X = c.X - Amount
-		      End Select
-		      
-		      'Result.AddRow c
-		      PreviousCoord.X = c.X
-		      PreviousCoord.Y = c.Y
-		    Next
-		  Next
-		  
-		  'LinearCoordinates = NewCoordinates
-		  
-		  Intersections = Result
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function CalculateMaximumSteps(Csv As String) As Integer
-		  Var MaxSteps As Integer = 0
-		  For Each Line As String In Csv.Split(EndOfLine)
-		    Var Parts() As String = Line.Split(",")
-		    Var WireSteps As Integer = 0
-		    For Each Segment As String In Parts
-		      Var Amount As Integer = Segment.Right(Segment.Length - 1).Val
-		      WireSteps = WireSteps + Amount
-		    Next
+		  Var LessStepsWireIndex As Integer
+		  Var WireWithLessSteps As Wire
+		  For I As Integer = 0 To Wires.Count - 1
+		    Var w As Wire = Wires(I)
+		    If WireWithLessSteps = Nil Then
+		      WireWithLessSteps = w
+		      Continue
+		    End If
 		    
-		    MaxSteps = Max(MaxSteps, WireSteps)
+		    If w.Traveled < WireWithLessSteps.Traveled Then
+		      WireWithLessSteps = w
+		      LessStepsWireIndex = I
+		    End If
 		  Next
 		  
-		  Return MaxSteps
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetDistanceFromCenter() As Integer
-		  Var OffsetScrollbarX As Double = HorizontalScrollBar.MaximumValue / 2 - HorizontalScrollBar.Value
-		  Var OffsetScrollbarY As Double = VerticalScrollBar.MaximumValue / 2 - VerticalScrollBar.Value
-		  Return 0 'Abs(MousePos.X - OffsetScrollbarX) + Abs(MousePos.Y - OffsetScrollbarY)
-		End Function
+		  For Each CoordEntry As DictionaryEntry In WireWithLessSteps.PointSteps
+		    For I As Integer = 0 To Wires.Count - 1
+		      If I = LessStepsWireIndex Then Continue
+		      Var w As Wire = Wires(I)
+		      If Not w.PointSteps.HasKey(CoordEntry.Key) Then Continue
+		      Var OtherWireSteps As Integer = w.PointSteps.Value(CoordEntry.Key)
+		      Var NewValue As Integer = Intersections.Lookup(CoordEntry.Key, CoordEntry.Value) + OtherWireSteps
+		      Intersections.Value(CoordEntry.Key) = NewValue
+		    Next
+		  Next
+		  
+		  Var Found As Integer = Intersections.Count
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -386,13 +198,24 @@ End
 		    Return CachedGridPicture
 		  End If
 		  
-		  Var NewPicture As New Picture(WiringCanvas.Width, WiringCanvas.Height)
+		  Var Bounds() As Coordinate
+		  Bounds.AddRow New Coordinate
+		  Bounds.AddRow New Coordinate
+		  For Each w As Wire In Wires
+		    If w.Bounds(0).X < Bounds(0).X Then Bounds(0).X = w.Bounds(0).X
+		    If w.Bounds(0).Y < Bounds(0).Y Then Bounds(0).Y = w.Bounds(0).Y
+		    If w.Bounds(1).X > Bounds(1).X Then Bounds(1).X = w.Bounds(1).X
+		    If w.Bounds(1).Y > Bounds(1).Y Then Bounds(1).Y = w.Bounds(1).Y
+		  Next
+		  
+		  Var BoundsWidth As Integer = Max(1, Abs(Bounds(1).X) + Abs(Bounds(0).X))
+		  Var BoundsHeight As Integer = Max(1, Abs(Bounds(1).Y) + Abs(Bounds(0).Y))
+		  
+		  Var NewPicture As New Picture(BoundsWidth, BoundsHeight)
 		  Var g As Graphics = NewPicture.Graphics
 		  
-		  Var Cols As Double = g.Width / GridSize
-		  Var Rows As Double = g.Height / GridSize
-		  Var OffsetX As Integer = (Cols / 2) + (HorizontalScrollBar.MaximumValue / 2 - HorizontalScrollBar.Value)
-		  Var OffsetY As Integer = (Rows / 2) + (VerticalScrollBar.MaximumValue / 2 - VerticalScrollBar.Value)
+		  Var OffsetX As Integer = 0'- (g.Width / 2)
+		  Var OffsetY As Integer = 0'- (g.Height / 2)
 		  
 		  g.DrawingColor = Color.RGB(25, 25, 25)
 		  g.FillRectangle 0, 0, g.Width, g.Height
@@ -420,29 +243,37 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub InvalidateGrid()
+		Sub InvalidateCanvas()
 		  CachedGridPicture = Nil
-		  WiringCanvas.Invalidate
+		  WiresCanvas.Invalidate
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub LoadWiresFromCsv(Csv As String)
 		  Wires.RemoveAllRows
-		  Var Rand As New Random
-		  Rand.RandomizeSeed
-		  Var Lines() As String = Csv.Split(EndOfLine)
-		  For Each Line As String In Lines
+		  
+		  For Each Line As String In Csv.Split(EndOfLine)
 		    Var c As New Wire
-		    c.DrawingColor = Color.HSV(Rand.Number, 1, 1)
 		    c.StepsCsv = Line
 		    c.LoadCoordinates Line
 		    Wires.AddRow c
 		  Next
 		  
-		  MaximumSteps = CalculateMaximumSteps(Csv)
 		  CalculateIntersections
-		  InvalidateGrid
+		  RefreshIntersectionsList
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RefreshIntersectionsList()
+		  CrossedWiresListbox.RemoveAllRows
+		  For Each Intersection As DictionaryEntry In Intersections
+		    Var Steps As Integer = Intersection.Value
+		    Var CoordParts() As String = Intersection.Key.StringValue.Split("x")
+		    Var Distance As Integer = Abs(CoordParts(0).Val) + Abs(CoordParts(1).Val)
+		    CrossedWiresListbox.AddRow Intersection.Key, Distance.ToString, Steps.ToString
+		  Next
 		End Sub
 	#tag EndMethod
 
@@ -456,11 +287,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Intersections() As Intersection
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		MaximumSteps As Integer
+		Intersections As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -487,17 +314,33 @@ End
 
 #tag EndWindowCode
 
-#tag Events WiringCanvas
+#tag Events CrossedWiresListbox
+	#tag Event
+		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
+		  If column = 0 Then Return False
+		  
+		  Var val1 As Integer = Me.CellValueAt(row1, column).Val
+		  Var val2 As Integer = Me.CellValueAt(row2, column).Val
+		  
+		  Select Case val1 - val2
+		  Case Is < 0
+		    result = -1
+		  Case Is > 0
+		    result = 1
+		  Else
+		    result = 0
+		  End Select
+		  
+		  Return True
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events WiresCanvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture GetGridPicture, 0, 0, g.Width, g.Height
+		  Var p As Picture = GetGridPicture
+		  g.DrawPicture p, 0, 0, g.Width, g.Height, 0, 0, p.Width, p.Height
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
-		  HorizontalScrollBar.Value = HorizontalScrollBar.Value + deltaX
-		  VerticalScrollBar.Value = VerticalScrollBar.Value + deltaY
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events LoadFromCsvPushButton
@@ -509,28 +352,7 @@ End
 		  If d.Csv.Trim = "" Then Return
 		  PreviousCsv = d.Csv
 		  LoadWiresFromCsv(d.Csv)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events GridSizeSlider
-	#tag Event
-		Sub ValueChanged()
-		  GridSize = Me.Value
-		  InvalidateGrid
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events VerticalScrollBar
-	#tag Event
-		Sub ValueChanged()
-		  InvalidateGrid
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events HorizontalScrollBar
-	#tag Event
-		Sub ValueChanged()
-		  InvalidateGrid
+		  InvalidateCanvas
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -774,13 +596,5 @@ End
 		InitialValue=""
 		Type="String"
 		EditorType="MultiLineEditor"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximumSteps"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="Integer"
-		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

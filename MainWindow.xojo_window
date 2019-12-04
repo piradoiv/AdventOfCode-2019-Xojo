@@ -53,7 +53,7 @@ Begin Window MainWindow
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   0
+      Value           =   2
       Visible         =   True
       Width           =   600
       Begin FuelCalculatorContainerControl FuelCalculator

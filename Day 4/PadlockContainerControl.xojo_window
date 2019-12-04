@@ -282,6 +282,7 @@ Begin ContainerControl PadlockContainerControl
       Scope           =   0
       TabIndex        =   6
       TabPanelIndex   =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   360
       Transparent     =   False
@@ -556,6 +557,7 @@ Begin ContainerControl PadlockContainerControl
       Top             =   242
       Transparent     =   False
       Underline       =   False
+      Value           =   False
       Visible         =   True
       VisualState     =   "0"
       Width           =   192

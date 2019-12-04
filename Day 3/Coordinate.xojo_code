@@ -1,11 +1,11 @@
 #tag Class
 Protected Class Coordinate
 	#tag Property, Flags = &h0
-		X As Double
+		X As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Y As Double
+		Y As Integer
 	#tag EndProperty
 
 
@@ -55,7 +55,7 @@ Protected Class Coordinate
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -63,7 +63,7 @@ Protected Class Coordinate
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Double"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
