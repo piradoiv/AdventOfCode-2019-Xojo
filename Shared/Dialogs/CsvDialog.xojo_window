@@ -175,8 +175,23 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Property, Flags = &h0
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mCsv
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mCsv = value
+			  CsvTextArea.Value = Value
+			End Set
+		#tag EndSetter
 		Csv As String
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mCsv As String
 	#tag EndProperty
 
 

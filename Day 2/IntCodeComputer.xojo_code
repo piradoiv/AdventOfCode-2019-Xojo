@@ -102,6 +102,22 @@ Protected Class IntCodeComputer
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Priority"
+			Visible=true
+			Group="Behavior"
+			InitialValue="5"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StackSize"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
@@ -123,22 +139,6 @@ Protected Class IntCodeComputer
 			Group="ID"
 			InitialValue=""
 			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Left"
-			Visible=true
-			Group="Position"
-			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Top"
-			Visible=true
-			Group="Position"
-			InitialValue="0"
-			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

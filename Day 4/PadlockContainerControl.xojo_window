@@ -1,5 +1,5 @@
 #tag Window
-Begin ContainerControl IntCodeComputerContainerControl
+Begin ContainerControl PadlockContainerControl
    AllowAutoDeactivate=   True
    AllowFocus      =   False
    AllowFocusRing  =   False
@@ -10,7 +10,7 @@ Begin ContainerControl IntCodeComputerContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   300
+   Height          =   394
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -24,181 +24,8 @@ Begin ContainerControl IntCodeComputerContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   300
-   Begin Label MemoryLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Memory:"
-      Visible         =   True
-      Width           =   153
-   End
-   Begin Listbox MemoryListbox
-      AllowAutoDeactivate=   True
-      AllowAutoHideScrollbars=   True
-      AllowExpandableRows=   False
-      AllowFocusRing  =   True
-      AllowResizableColumns=   False
-      AllowRowDragging=   False
-      AllowRowReordering=   False
-      Bold            =   False
-      ColumnCount     =   2
-      ColumnWidths    =   "60,*"
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      DropIndicatorVisible=   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      GridLinesHorizontalStyle=   "0"
-      GridLinesVerticalStyle=   "0"
-      HasBorder       =   True
-      HasHeader       =   True
-      HasHorizontalScrollbar=   False
-      HasVerticalScrollbar=   True
-      HeadingIndex    =   -1
-      Height          =   160
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   "Address	Value"
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      RequiresSelection=   False
-      RowSelectionType=   "0"
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   53
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   260
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
-   Begin PushButton StartPushButton
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Cancel          =   False
-      Caption         =   "Start"
-      Default         =   False
-      Enabled         =   False
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      MacButtonStyle  =   "0"
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   260
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
-   Begin ProgressWheel RunningProgressWheel
-      AllowAutoDeactivate=   True
-      Enabled         =   True
-      Height          =   16
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   264
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   260
-      Transparent     =   False
-      Visible         =   False
-      Width           =   16
-   End
-   Begin PushButton FromCSVPushButton
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      Cancel          =   False
-      Caption         =   "Load from CSV"
-      Default         =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   164
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      MacButtonStyle  =   "0"
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   116
-   End
-   Begin TextField DesiredOutputTextField
+   Width           =   534
+   Begin TextField RangeFromTextField
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -214,34 +41,164 @@ Begin ContainerControl IntCodeComputerContainerControl
       Format          =   ""
       HasBorder       =   True
       Height          =   22
-      Hint            =   "Leave blank if not needed"
+      Hint            =   "From"
       Index           =   -2147483648
       Italic          =   False
-      Left            =   132
-      LockBottom      =   True
+      Left            =   20
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
+      LockRight       =   False
+      LockTop         =   True
       MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   0
-      TabIndex        =   6
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   224
+      Top             =   44
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   148
+      Width           =   100
    End
-   Begin Label DesiredOutputLabel
+   Begin Label PasswordRangeLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "Password range:"
+      Visible         =   True
+      Width           =   212
+   End
+   Begin TextField RangeToTextField
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   22
+      Hint            =   "To"
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   132
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   44
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   100
+   End
+   Begin Listbox ResultListbox
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
+      AllowFocusRing  =   True
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
+      Bold            =   False
+      ColumnCount     =   1
+      ColumnWidths    =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      GridLinesHorizontalStyle=   "0"
+      GridLinesVerticalStyle=   "0"
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      HeadingIndex    =   -1
+      Height          =   264
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      RequiresSelection=   False
+      RowSelectionType=   "0"
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   78
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   212
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
+   Begin Label CounterLabel
       AllowAutoDeactivate=   True
       Bold            =   False
       DataField       =   ""
@@ -263,156 +220,325 @@ Begin ContainerControl IntCodeComputerContainerControl
       Multiline       =   False
       Scope           =   0
       Selectable      =   False
-      TabIndex        =   7
+      TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   225
+      Top             =   354
       Transparent     =   False
       Underline       =   False
-      Value           =   "Desired output:"
+      Value           =   "#CounterLabel_Value"
       Visible         =   True
-      Width           =   100
+      Width           =   347
    End
-   Begin Thread BackgroundThread
+   Begin PushButton StartPushButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Start"
+      Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
       Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   376
+      LockBottom      =   False
       LockedInPosition=   False
-      Priority        =   5
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   "0"
       Scope           =   0
-      StackSize       =   0
+      TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   44
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin ProgressBar PasswordProgressBar
+      AllowAutoDeactivate=   True
+      Enabled         =   False
+      Height          =   20
+      Indeterminate   =   False
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   379
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      MaximumValue    =   100
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   354
+      Transparent     =   False
+      Value           =   1.0
+      Visible         =   False
+      Width           =   134
+   End
+   Begin PopupMenu MethodPopupMenu
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   "Bruteforce\nSmart Elf"
+      Italic          =   False
+      Left            =   244
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      SelectedRowIndex=   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   45
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   120
+   End
+   Begin Label AlgorithmLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   244
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "Algorithm:"
+      Visible         =   True
+      Width           =   120
+   End
+   Begin Label PasswordRulesLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   229
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   260
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   113
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "- It is a six-digit number\n- The value is within the range given in your puzzle input\n- Two adjacent digits are the same (like 22 in 122345)\n- Going from left to right, the digits never decrease; they only ever increase or stay the same\n- The two adjacent matching digits are not part of a larger group of matching digits"
+      Visible         =   True
+      Width           =   254
+   End
+   Begin Label RulesTitleLabel
+      AllowAutoDeactivate=   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   260
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   89
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "Password Rules:"
+      Visible         =   True
+      Width           =   254
+   End
+   Begin PushButton ResetPushButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Reset"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   244
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      MacButtonStyle  =   "0"
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   322
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Function BuildComputerWithMemory(FromMemory() As Integer) As IntCodeComputer
-		  Var Result As New IntCodeComputer
-		  Result.Memory = FromMemory
-		  Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function FindResultForDesiredOutput(DesiredOutput As Integer) As Integer()
-		  Var Noun As Integer
-		  Var Verb As Integer
-		  Var Success As Boolean = False
-		  For Noun = 0 To 99
-		    For Verb = 0 To 99
-		      Var TempMemory() As Integer = GetMemoryCopy(Memory)
-		      TempMemory(1) = Noun
-		      TempMemory(2) = Verb
-		      Computer = BuildComputerWithMemory(TempMemory)
-		      Try
-		        Computer.Run
-		        If Computer.Memory(0) = DesiredOutputTextField.Value.Val Then
-		          Exit For Noun
-		        End If
-		      Catch E As RuntimeException
-		        Continue
-		      End Try
-		    Next
-		  Next
-		  
-		  Var Result() As Integer = Array(Noun, Verb)
-		  Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetMemoryCopy(FromMemory() As Integer) As Integer()
-		  Var Result() As Integer
-		  For I As Integer = 0 To FromMemory.Count - 1
-		    Result.AddRow FromMemory(I)
-		  Next
-		  
-		  Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub HandleFinishedEvent(Sender As IntCodeComputer)
-		  RunningProgressWheel.Visible = False
-		  RefreshMemory
+		Sub PrepareSelectedPasswordCracker()
+		  Select Case MethodPopupMenu.SelectedRowIndex
+		  Case 0
+		    PasswordCracker = New BruteforcePasswordCracker
+		  Case 1
+		    PasswordCracker = New SmartElfPasswordCracker
+		  End Select
+		  AddHandler PasswordCracker.UserInterfaceUpdate, WeakAddressOf UserInterfaceUpdateHandler
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RefreshMemory()
-		  MemoryListbox.RemoveAllRows
-		  For I As Integer = 0 To Memory.Count - 1
-		    MemoryListbox.AddRow I.ToString, Memory(I).ToString
-		    MemoryListbox.CellTypeAt(I, 1) = Listbox.CellTypes.TextField
+		Sub ResetResults()
+		  ResultListbox.RemoveAllRows
+		  Var RangeFrom As Integer = RangeFromTextField.Value.Val
+		  Var RangeTo As Integer = RangeToTextField.Value.Val
+		  PasswordProgressBar.MaximumValue = RangeTo - RangeFrom
+		  PasswordProgressBar.Value = 0
+		  PasswordProgressBar.Visible = False
+		  CounterLabel.Value = CounterLabel_Value
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub StartCracking()
+		  PrepareSelectedPasswordCracker
+		  ResetResults
+		  PasswordProgressBar.Visible = True
+		  StartTime = DateTime.Now
+		  PasswordCracker.GetValidPasswordsWithinRange(RangeFromTextField.Value.Val, RangeToTextField.Value.Val)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UserInterfaceUpdateHandler(Sender As Thread, data() As Dictionary)
+		  For Each d As Dictionary In data
+		    Select Case d.Value("type")
+		    Case "update"
+		      Var Progress As Integer = d.Value("progress")
+		      PasswordProgressBar.Value = Progress - RangeFromTextField.Value.Val
+		      
+		      Var Passwords() As Integer = d.Value("new_passwords")
+		      For Each Password As Integer In Passwords
+		        ResultListbox.AddRow Password.ToString
+		      Next
+		      
+		      ResultListbox.ScrollPosition = ResultListbox.RowCount
+		      CounterLabel.Value = "Found " + ResultListbox.RowCount.ToString + " valid passwords."
+		    Case "finish"
+		      PasswordProgressBar.Visible = False
+		      Var ElapsedSeconds As Double = DateTime.Now.SecondsFrom1970 - StartTime.SecondsFrom1970
+		      Var ElapsedTime As String = Format(ElapsedSeconds, "#.###")
+		      Var Append As String = " in " + ElapsedTime + " seconds."
+		      CounterLabel.Value = CounterLabel.Value.Left(CounterLabel.Value.Length - 1) + Append
+		    End Select
 		  Next
-		  
-		  StartPushButton.Enabled = Memory.Count > 0
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub RunComputer()
-		  #Pragma BreakOnExceptions False
-		  RunningProgressWheel.Visible = True
-		  Var RunJustOnce As Boolean = DesiredOutputTextField.Value.Trim = ""
-		  
-		  If RunJustOnce Then
-		    RunComputerOnce
-		  Else
-		    Var TempMemory() As Integer = GetMemoryCopy(Memory)
-		    Var Result() As Integer = FindResultForDesiredOutput(DesiredOutputTextField.Value.Val)
-		    RunningProgressWheel.Visible = False
-		    Memory = TempMemory
-		    Memory(1) = Result(0)
-		    Memory(2) = Result(1)
-		    DesiredOutputTextField.Value = ""
-		  End If
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub RunComputerOnce()
-		  Try
-		    Computer = BuildComputerWithMemory(Memory)
-		    AddHandler Computer.Finished, WeakAddressOf HandleFinishedEvent
-		    Computer.Run
-		  Catch E As OutOfBoundsException
-		    MessageDialog.Show "The memory address is beyond the limits."
-		  Catch E As RuntimeException
-		    MessageDialog.Show "The computer has encountered an invalid opcode and must stop its execution:" + _
-		    EndOfLine + E.Message
-		  End Try
-		  
-		  HandleFinishedEvent(Computer)
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
-		Computer As IntCodeComputer
+		PasswordCracker As BruteforcePasswordCracker
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Memory() As Integer
+		StartTime As DateTime
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		PreviousCsv As String
-	#tag EndProperty
+
+	#tag Constant, Name = CounterLabel_Value, Type = String, Dynamic = True, Default = \"Waiting to start.", Scope = Protected
+	#tag EndConstant
 
 
 #tag EndWindowCode
 
-#tag Events MemoryListbox
-	#tag Event
-		Sub CellAction(row As Integer, column As Integer)
-		  Memory(row) = Me.CellValueAt(row, column).Val
-		End Sub
-	#tag EndEvent
+#tag Events ResultListbox
 	#tag Event
 		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
 		  g.DrawingColor = If(row Mod 2 = 0, Palette.CellAlternateBackground, Color.White)
@@ -423,39 +549,14 @@ End
 #tag Events StartPushButton
 	#tag Event
 		Sub Action()
-		  RunComputer
+		  StartCracking
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events FromCSVPushButton
+#tag Events ResetPushButton
 	#tag Event
 		Sub Action()
-		  Var d As New CsvDialog
-		  d.Csv = PreviousCsv
-		  d.ShowModalWithin(Self.Window)
-		  If d.Csv = "" Then Return
-		  
-		  PreviousCsv = d.Csv
-		  Memory.RemoveAllRows
-		  For Each Line As String In d.Csv.Split(",")
-		    Memory.AddRow Line.Val
-		  Next
-		  
-		  RefreshMemory
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events BackgroundThread
-	#tag Event
-		Sub Run()
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub UserInterfaceUpdate(data() as Dictionary)
-		  Var Result As Dictionary = data(data.LastRowIndex)
-		  Memory = Result.Value("memory")
-		  RefreshMemory
+		  ResetResults
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -675,13 +776,5 @@ End
 		InitialValue="False"
 		Type="Boolean"
 		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="PreviousCsv"
-		Visible=false
-		Group="Behavior"
-		InitialValue=""
-		Type="String"
-		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior

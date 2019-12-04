@@ -20,7 +20,7 @@ Begin Window MainWindow
    MinimumHeight   =   64
    MinimumWidth    =   64
    Resizeable      =   True
-   Title           =   "Advent of Code 2019"
+   Title           =   "Advent of Code 🎅🏻 2019"
    Type            =   "0"
    Visible         =   True
    Width           =   600
@@ -45,11 +45,12 @@ Begin Window MainWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   2
+      PanelCount      =   4
       Panels          =   ""
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -68,6 +69,7 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
+         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -97,6 +99,72 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         PreviousCsv     =   ""
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   2
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Transparent     =   True
+         Visible         =   True
+         Width           =   600
+      End
+      Begin WiringContainerControl Wiring
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         CachedGridPicture=   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         GridSize        =   4
+         HasBackgroundColor=   False
+         Height          =   400
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         MaximumSteps    =   0
+         PreviousCsv     =   ""
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   3
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Transparent     =   True
+         Visible         =   True
+         Width           =   600
+      End
+      Begin PadlockContainerControl SecureContainerControl1
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         HasBackgroundColor=   False
+         Height          =   400
+         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -106,7 +174,7 @@ Begin Window MainWindow
          LockTop         =   True
          Scope           =   0
          TabIndex        =   0
-         TabPanelIndex   =   2
+         TabPanelIndex   =   4
          TabStop         =   True
          Tooltip         =   ""
          Top             =   0
@@ -126,6 +194,8 @@ End
 		Sub Open()
 		  Me.FuelCalculatorToolItem.Tag = 0
 		  Me.IntCodeComputerToolItem.Tag = 1
+		  Me.WiringToolItem.Tag = 2
+		  Me.SecureContainerToolItem.Tag = 3
 		  ToolbarButton(Me.FuelCalculatorToolItem).Pressed = True
 		End Sub
 	#tag EndEvent
