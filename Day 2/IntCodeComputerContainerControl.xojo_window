@@ -277,7 +277,6 @@ Begin ContainerControl IntCodeComputerContainerControl
       Width           =   100
    End
    Begin Thread BackgroundThread
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -370,6 +369,7 @@ End
 		    Memory(1) = Result(0)
 		    Memory(2) = Result(1)
 		    DesiredOutputTextField.Value = ""
+		    RefreshMemory
 		  End If
 		End Sub
 	#tag EndMethod
