@@ -10,7 +10,7 @@ Begin ContainerControl IntCodeComputerContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   300
+   Height          =   434
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -24,7 +24,7 @@ Begin ContainerControl IntCodeComputerContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   300
+   Width           =   408
    Begin Label MemoryLabel
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -58,7 +58,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Underline       =   False
       Value           =   "Memory:"
       Visible         =   True
-      Width           =   153
+      Width           =   261
    End
    Begin Listbox MemoryListbox
       AllowAutoDeactivate=   True
@@ -86,7 +86,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   160
+      Height          =   154
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   "Address	Value"
@@ -108,7 +108,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   260
+      Width           =   368
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -138,7 +138,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   260
+      Top             =   254
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -150,7 +150,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Height          =   16
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   264
+      Left            =   372
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -161,7 +161,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   260
+      Top             =   394
       Transparent     =   False
       Visible         =   False
       Width           =   16
@@ -180,7 +180,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   164
+      Left            =   272
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -233,13 +233,13 @@ Begin ContainerControl IntCodeComputerContainerControl
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   224
+      Top             =   218
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   148
+      Width           =   256
    End
    Begin Label DesiredOutputLabel
       AllowAutoDeactivate=   True
@@ -269,7 +269,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   225
+      Top             =   219
       Transparent     =   False
       Underline       =   False
       Value           =   "Desired output:"
@@ -277,13 +277,60 @@ Begin ContainerControl IntCodeComputerContainerControl
       Width           =   100
    End
    Begin Thread BackgroundThread
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
       Scope           =   0
       StackSize       =   0
       TabPanelIndex   =   0
+   End
+   Begin TextArea OutputTextArea
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      Height          =   128
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      MaximumCharactersAllowed=   0
+      Multiline       =   True
+      ReadOnly        =   True
+      Scope           =   0
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   286
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   368
    End
 End
 #tag EndWindow
@@ -292,6 +339,8 @@ End
 	#tag Method, Flags = &h0
 		Function BuildComputerWithMemory(FromMemory() As Integer) As IntCodeComputer
 		  Var Result As New IntCodeComputer
+		  AddHandler Result.InputRequired, WeakAddressOf HandleInputRequired
+		  AddHandler Result.Output, WeakAddressOf HandleOutput
 		  Result.Memory = FromMemory
 		  Return Result
 		End Function
@@ -339,6 +388,21 @@ End
 		Sub HandleFinishedEvent(Sender As IntCodeComputer)
 		  RunningProgressWheel.Visible = False
 		  RefreshMemory
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function HandleInputRequired(Sender As IntCodeComputer) As Integer
+		  Var d As New InputDialog
+		  d.ShowModalWithin(Self.Window)
+		  Var InputMessage As Integer = d.InputMessage.Val
+		  Return InputMessage
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub HandleOutput(Sender As IntCodeComputer, Message As Integer)
+		  OutputTextArea.AddText Message.ToString + EndOfLine
 		End Sub
 	#tag EndMethod
 

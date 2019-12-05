@@ -83,6 +83,7 @@ Begin ContainerControl WiringContainerControl
       AllowFocusRing  =   False
       AllowTabs       =   False
       Backdrop        =   0
+      DoubleBuffer    =   False
       Enabled         =   True
       Height          =   290
       Index           =   -2147483648

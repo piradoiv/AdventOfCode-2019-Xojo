@@ -10,12 +10,13 @@ Inherits BruteforcePasswordCracker
 		  End If
 		  
 		  Var PasswordChars() As String = CurrentPassword.ToString.Split("")
-		  Var Previous, Current As Integer
+		  Var Previous, Current, Result As Integer
 		  
 		  For I As Integer = 1 To PasswordChars.Count - 1
 		    Previous = PasswordChars(I - 1).Val
-		    Current = Max(Previous, PasswordChars(I).Val)
-		    PasswordChars(I) = Current.ToString
+		    Current = PasswordChars(I).Val
+		    Result = Max(Previous, Current)
+		    PasswordChars(I) = Result.ToString
 		  Next
 		  
 		  Return String.FromArray(PasswordChars, "").Val
