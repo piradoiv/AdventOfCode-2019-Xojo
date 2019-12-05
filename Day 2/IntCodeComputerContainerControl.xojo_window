@@ -421,6 +421,7 @@ End
 	#tag Method, Flags = &h0
 		Sub RunComputer()
 		  #Pragma BreakOnExceptions False
+		  OutputTextArea.Value = ""
 		  RunningProgressWheel.Visible = True
 		  Var RunJustOnce As Boolean = DesiredOutputTextField.Value.Trim = ""
 		  

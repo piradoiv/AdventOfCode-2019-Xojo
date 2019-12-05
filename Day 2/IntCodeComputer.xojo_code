@@ -8,26 +8,6 @@ Protected Class IntCodeComputer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Multiply(Noun As Integer, Verb As Integer, ResultAddress As Integer)
-		  Memory(ResultAddress) = Noun * Verb
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub PrintOutput()
-		  Var OutputMessage As Integer = Memory(Memory(InstructionPointer + 1))
-		  Output(OutputMessage)
-		  InstructionPointer = InstructionPointer + 2
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub ReadInput()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub Reset()
 		  InstructionPointer = 0
 		  OpCode = 99
@@ -111,12 +91,6 @@ Protected Class IntCodeComputer
 		  Loop Until Terminated Or InstructionPointer >= Memory.Count
 		  
 		  Finished
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Sum(Noun As Integer, Verb As Integer, ResultAddress As Integer)
-		  Memory(ResultAddress) = Noun + Verb
 		End Sub
 	#tag EndMethod
 
