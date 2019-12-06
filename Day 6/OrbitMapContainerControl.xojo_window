@@ -291,7 +291,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub CalculateOrbitsBetween()
-		  Var StatsMessage As String = "Direct and indirect orbits amount: {TotalOrbits} | Orbits between: {OrbitsBetween}"
+		  Var StatsMessage As String = "Map data checksum: {TotalOrbits} | Orbits between: {OrbitsBetween}"
 		  
 		  If OriginListbox.SelectedRowCount <> 1 Or DestinationListbox.SelectedRowCount <> 1 Then
 		    StatsLabel.Value = StatsMessage _
