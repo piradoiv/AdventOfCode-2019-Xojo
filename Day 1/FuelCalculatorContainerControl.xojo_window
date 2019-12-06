@@ -187,6 +187,7 @@ Begin ContainerControl FuelCalculatorContainerControl
       Width           =   260
    End
    Begin FuelCalculator Calculator
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Scope           =   0

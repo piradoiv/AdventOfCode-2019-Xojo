@@ -8,6 +8,7 @@ MenuBar=MainMenuBar;MainMenuBar.xojo_menu;&h0000000001B55FFF;&h0000000000000000;
 BuildSteps=Build Automation;Build Automation.xojo_code;&h0000000017BDC7FF;&h0000000000000000;false
 Toolbar=MainAppToolbar;MainAppToolbar.xojo_toolbar;&h0000000009677FFF;&h0000000000000000;false
 Folder=Icons;Icons;&h0000000010047FFF;&h0000000000000000;false
+MultiImage=constellations;Icons/constellations.xojo_image;&h000000005341F7FF;&h0000000010047FFF;false
 Folder=Shared;Shared;&h000000005BCABFFF;&h0000000000000000;false
 Folder=Dialogs;Shared/Dialogs;&h000000001985FFFF;&h000000005BCABFFF;false
 Folder=Day 1;Day 1;&h00000000167687FF;&h0000000000000000;false

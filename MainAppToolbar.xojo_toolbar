@@ -28,6 +28,7 @@ Begin Toolbar MainAppToolbar
 		Caption = "Orbit Map"
 		Tooltip = ""
 		ButtonStyle = 2
+		Icon = 1396832255
 	End
 End
 #tag EndToolbar

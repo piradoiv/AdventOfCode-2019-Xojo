@@ -10,7 +10,7 @@ Begin ContainerControl OrbitMapContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   300
+   Height          =   414
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -24,12 +24,12 @@ Begin ContainerControl OrbitMapContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   300
-   Begin PushButton PushButton1
+   Width           =   412
+   Begin PushButton LoadMapDataPushButton
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "Button"
+      Caption         =   "Load Map Data"
       Default         =   False
       Enabled         =   True
       FontName        =   "System"
@@ -39,11 +39,11 @@ Begin ContainerControl OrbitMapContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   98
+      Left            =   268
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       MacButtonStyle  =   "0"
       Scope           =   0
@@ -51,18 +51,14 @@ Begin ContainerControl OrbitMapContainerControl
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   71
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   80
+      Width           =   124
    End
-   Begin TextField TextField1
+   Begin Label StatsLabel
       AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
-      AllowSpellChecking=   False
-      AllowTabs       =   False
-      BackgroundColor =   &cFFFFFF00
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
@@ -70,42 +66,138 @@ Begin ContainerControl OrbitMapContainerControl
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Format          =   ""
-      HasBorder       =   True
-      Height          =   22
-      Hint            =   ""
+      Height          =   20
       Index           =   -2147483648
+      InitialParent   =   ""
       Italic          =   False
-      Left            =   38
-      LockBottom      =   False
+      Left            =   20
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      MaximumCharactersAllowed=   0
-      Password        =   False
-      ReadOnly        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
       Scope           =   0
-      TabIndex        =   1
+      Selectable      =   False
+      TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   146
+      Top             =   374
       Transparent     =   False
       Underline       =   False
-      ValidationMask  =   ""
-      Value           =   ""
+      Value           =   "Please load your map data."
       Visible         =   True
-      Width           =   157
+      Width           =   372
    End
-   Begin TextField TextField2
+   Begin Listbox OriginListbox
       AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
       AllowFocusRing  =   True
-      AllowSpellChecking=   False
-      AllowTabs       =   False
-      BackgroundColor =   &cFFFFFF00
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
+      Bold            =   False
+      ColumnCount     =   1
+      ColumnWidths    =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      GridLinesHorizontalStyle=   "0"
+      GridLinesVerticalStyle=   "0"
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      HeadingIndex    =   -1
+      Height          =   286
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      RequiresSelection=   True
+      RowSelectionType=   "0"
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   76
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   177
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
+   Begin Listbox DestinationListbox
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
+      AllowFocusRing  =   True
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
+      Bold            =   False
+      ColumnCount     =   1
+      ColumnWidths    =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      GridLinesHorizontalStyle=   "0"
+      GridLinesVerticalStyle=   "0"
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      HeadingIndex    =   -1
+      Height          =   286
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   209
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      RequiresSelection=   True
+      RowSelectionType=   "0"
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   76
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   183
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
+   Begin Label OriginLabel
+      AllowAutoDeactivate=   True
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
@@ -113,54 +205,167 @@ Begin ContainerControl OrbitMapContainerControl
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Format          =   ""
-      HasBorder       =   True
-      Height          =   22
-      Hint            =   ""
+      Height          =   20
       Index           =   -2147483648
+      InitialParent   =   ""
       Italic          =   False
-      Left            =   106
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      MaximumCharactersAllowed=   0
-      Password        =   False
-      ReadOnly        =   False
+      Multiline       =   False
       Scope           =   0
-      TabIndex        =   2
+      Selectable      =   False
+      TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   218
+      Top             =   52
       Transparent     =   False
       Underline       =   False
-      ValidationMask  =   ""
-      Value           =   ""
+      Value           =   "Source:"
       Visible         =   True
-      Width           =   121
+      Width           =   100
+   End
+   Begin Label DestinationLabel
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   209
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   52
+      Transparent     =   False
+      Underline       =   False
+      Value           =   "Destination:"
+      Visible         =   True
+      Width           =   100
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  ResizeElements
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resized()
+		  ResizeElements
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resizing()
+		  ResizeElements
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub CalculateOrbitsBetween()
+		  Var StatsMessage As String = "Direct and indirect orbits amount: {TotalOrbits} | Orbits between: {OrbitsBetween}"
+		  
+		  If OriginListbox.SelectedRowCount <> 1 Or DestinationListbox.SelectedRowCount <> 1 Then
+		    StatsLabel.Value = StatsMessage _
+		    .Replace("{TotalOrbits}", Map.Calculate.ToString) _
+		    .Replace("{OrbitsBetween}", "n/a")
+		    
+		    Return
+		  End If
+		  
+		  Var Origin As SpaceObject = Map.Finder.Value(OriginListbox.SelectedRowValue)
+		  Var Destination As SpaceObject = Map.Finder.Value(DestinationListbox.SelectedRowValue)
+		  
+		  Var Result As Integer = Map.CalculateOrbitsBetween(Origin, Destination)
+		  StatsLabel.Value = StatsMessage _
+		  .Replace("{TotalOrbits}", Map.Calculate.ToString) _
+		  .Replace("{OrbitsBetween}", Result.ToString)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ResizeElements()
+		  Var Padding As Double = OriginListbox.Left
+		  Var AvailableSizePerListbox As Double = (Self.Width - Padding * 3) / 2
+		  OriginListbox.Width = AvailableSizePerListbox
+		  DestinationListbox.Width = AvailableSizePerListbox
+		  DestinationListbox.Left = AvailableSizePerListbox + Padding * 2
+		  DestinationLabel.Left = DestinationListbox.Left
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		Map As OrbitMap
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
-#tag Events PushButton1
+#tag Events LoadMapDataPushButton
 	#tag Event
 		Sub Action()
-		  Var Map As New OrbitMap
-		  ' TextField1.Value = Map.Calculate.ToString
-		  Map.LoadInput
+		  Var d As New CsvDialog
+		  d.ShowModalWithin(Self.Window)
+		  Map = New OrbitMap
+		  Map.LoadMapData(d.Csv)
 		  
-		  Var You As SpaceObject = Map.Finder.Value("YOU")
-		  Var Santa As SpaceObject = Map.Finder.Value("SAN")
+		  OriginListbox.RemoveAllRows
+		  DestinationListbox.RemoveAllRows
 		  
-		  TextField2.Value = Map.CalculateOrbitsBetween(You, Santa).ToString
+		  For Each MapEntry As DictionaryEntry In Map.Finder
+		    OriginListbox.AddRow MapEntry.Key.StringValue
+		    DestinationListbox.AddRow MapEntry.Key.StringValue
+		  Next
 		  
+		  OriginListbox.SortingColumn = 0
+		  OriginListbox.ColumnSortDirectionAt(0) = ListBox.SortDirections.Ascending
+		  OriginListbox.Sort
+		  DestinationListbox.SortingColumn = 0
+		  DestinationListbox.ColumnSortDirectionAt(0) = ListBox.SortDirections.Ascending
+		  DestinationListbox.Sort
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OriginListbox
+	#tag Event
+		Sub Change()
+		  CalculateOrbitsBetween
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events DestinationListbox
+	#tag Event
+		Sub Change()
+		  CalculateOrbitsBetween
 		End Sub
 	#tag EndEvent
 #tag EndEvents
