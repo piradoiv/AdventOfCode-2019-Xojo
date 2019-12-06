@@ -295,7 +295,7 @@ End
 		  
 		  If OriginListbox.SelectedRowCount <> 1 Or DestinationListbox.SelectedRowCount <> 1 Then
 		    StatsLabel.Value = StatsMessage _
-		    .Replace("{TotalOrbits}", Map.Calculate.ToString) _
+		    .Replace("{TotalOrbits}", Map.GetChecksum.ToString) _
 		    .Replace("{OrbitsBetween}", "n/a")
 		    
 		    Return
@@ -306,7 +306,7 @@ End
 		  
 		  Var Result As Integer = Map.CalculateOrbitsBetween(Origin, Destination)
 		  StatsLabel.Value = StatsMessage _
-		  .Replace("{TotalOrbits}", Map.Calculate.ToString) _
+		  .Replace("{TotalOrbits}", Map.GetChecksum.ToString) _
 		  .Replace("{OrbitsBetween}", Result.ToString)
 		End Sub
 	#tag EndMethod
@@ -352,6 +352,8 @@ End
 		  DestinationListbox.SortingColumn = 0
 		  DestinationListbox.ColumnSortDirectionAt(0) = ListBox.SortDirections.Ascending
 		  DestinationListbox.Sort
+		  
+		  CalculateOrbitsBetween
 		End Sub
 	#tag EndEvent
 #tag EndEvents

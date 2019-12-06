@@ -1,21 +1,6 @@
 #tag Class
 Protected Class OrbitMap
 	#tag Method, Flags = &h0
-		Function Calculate() As Integer
-		  If CachedTotalOrbitsAmount <> -1 Then Return CachedTotalOrbitsAmount
-		  
-		  Var Result As Integer
-		  For Each Entry As DictionaryEntry In Finder
-		    Var CurrentObject As SpaceObject = Entry.Value
-		    Result = Result + CurrentObject.CountChilds
-		  Next
-		  
-		  CachedTotalOrbitsAmount = Result
-		  Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function CalculateOrbitsBetween(Origin As SpaceObject, Destination As SpaceObject) As Integer
 		  Var OrbitsCount As Integer
 		  Var CommonParent As SpaceObject
@@ -53,8 +38,23 @@ Protected Class OrbitMap
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetChecksum() As Integer
+		  If CachedChecksum <> -1 Then Return CachedChecksum
+		  
+		  Var Result As Integer
+		  For Each Entry As DictionaryEntry In Finder
+		    Var CurrentObject As SpaceObject = Entry.Value
+		    Result = Result + CurrentObject.CountChilds
+		  Next
+		  
+		  CachedChecksum = Result
+		  Return Result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub LoadMapData(MapData As String)
-		  CachedTotalOrbitsAmount = -1
+		  CachedChecksum = -1
 		  Finder = New Dictionary
 		  Finder.Value("COM") = New SpaceObject("COM")
 		  
@@ -72,7 +72,7 @@ Protected Class OrbitMap
 
 
 	#tag Property, Flags = &h0
-		CachedTotalOrbitsAmount As Integer = -1
+		CachedChecksum As Integer = -1
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -122,6 +122,14 @@ Protected Class OrbitMap
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CachedChecksum"
+			Visible=false
+			Group="Behavior"
+			InitialValue="-1"
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
