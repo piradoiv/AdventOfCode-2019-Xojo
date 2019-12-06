@@ -24,5 +24,10 @@ Begin Toolbar MainAppToolbar
 		ButtonStyle = 2
 		Icon = 1665302527
 	End
+	Begin ToolbarButton OrbitMapToolItem
+		Caption = "Orbit Map"
+		Tooltip = ""
+		ButtonStyle = 2
+	End
 End
 #tag EndToolbar

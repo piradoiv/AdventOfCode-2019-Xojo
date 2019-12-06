@@ -1,5 +1,5 @@
 #tag Window
-Begin ContainerControl FuelCalculatorContainerControl
+Begin ContainerControl OrbitMapContainerControl
    AllowAutoDeactivate=   True
    AllowFocus      =   False
    AllowFocusRing  =   False
@@ -10,7 +10,7 @@ Begin ContainerControl FuelCalculatorContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   290
+   Height          =   300
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -25,11 +25,12 @@ Begin ContainerControl FuelCalculatorContainerControl
    Transparent     =   True
    Visible         =   True
    Width           =   300
-   Begin Label InputLabel
+   Begin PushButton PushButton1
       AllowAutoDeactivate=   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
+      Cancel          =   False
+      Caption         =   "Button"
+      Default         =   False
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
@@ -38,112 +39,25 @@ Begin ContainerControl FuelCalculatorContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   98
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
-      Multiline       =   False
+      MacButtonStyle  =   "0"
       Scope           =   0
-      Selectable      =   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   20
+      Top             =   71
       Transparent     =   False
       Underline       =   False
-      Value           =   "Input:"
       Visible         =   True
-      Width           =   260
+      Width           =   80
    End
-   Begin TextArea InputTextArea
-      AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
-      AllowSpellChecking=   True
-      AllowStyledText =   False
-      AllowTabs       =   False
-      BackgroundColor =   &cFFFFFF00
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Format          =   ""
-      HasBorder       =   True
-      HasHorizontalScrollbar=   False
-      HasVerticalScrollbar=   True
-      Height          =   168
-      HideSelection   =   True
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      MaximumCharactersAllowed=   0
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   44
-      Transparent     =   False
-      Underline       =   False
-      ValidationMask  =   ""
-      Value           =   ""
-      Visible         =   True
-      Width           =   260
-   End
-   Begin Label ResultLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   224
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Result:"
-      Visible         =   True
-      Width           =   260
-   End
-   Begin TextField ResultTextField
+   Begin TextField TextField1
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -162,35 +76,72 @@ Begin ContainerControl FuelCalculatorContainerControl
       Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   20
-      LockBottom      =   True
+      Left            =   38
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
+      LockRight       =   False
+      LockTop         =   True
       MaximumCharactersAllowed=   0
       Password        =   False
-      ReadOnly        =   True
+      ReadOnly        =   False
       Scope           =   0
-      TabIndex        =   3
+      TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   248
+      Top             =   146
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
-      Value           =   "0"
+      Value           =   ""
       Visible         =   True
-      Width           =   260
+      Width           =   157
    End
-   Begin FuelCalculator Calculator
+   Begin TextField TextField2
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   22
+      Hint            =   ""
       Index           =   -2147483648
+      Italic          =   False
+      Left            =   106
+      LockBottom      =   False
       LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
       Scope           =   0
+      TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   218
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   121
    End
 End
 #tag EndWindow
@@ -198,13 +149,18 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events InputTextArea
+#tag Events PushButton1
 	#tag Event
-		Sub TextChange()
-		  ResultTextField.Value = "0"
-		  Var Modules() As Integer = Calculator.GetModulesFromRawString(InputTextArea.Value)
-		  Var Result As Integer = Calculator.CalculateFuelNeededForAllModules(Modules)
-		  ResultTextField.Value = Result.ToString
+		Sub Action()
+		  Var Map As New OrbitMap
+		  ' TextField1.Value = Map.Calculate.ToString
+		  Map.LoadInput
+		  
+		  Var You As SpaceObject = Map.Finder.Value("YOU")
+		  Var Santa As SpaceObject = Map.Finder.Value("SAN")
+		  
+		  TextField2.Value = Map.CalculateOrbitsBetween(You, Santa).ToString
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
