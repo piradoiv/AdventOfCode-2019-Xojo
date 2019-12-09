@@ -1,10 +1,31 @@
 #tag Class
 Protected Class IntCodeComputer
 	#tag Method, Flags = &h0
+		Sub AddInput(Input As Integer)
+		  Self.Input.AddRow Input
+		  If Status = Statuses.WaitingForInput Then
+		    Status = Statuses.Running
+		    Run
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function GetIntCode(OpCode As Integer) As String()
 		  Var Result() As String = OpCode.ToString.LeftPad("0", 5).ToArray("")
 		  Return Result
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub LoadProgram(Program As String)
+		  Memory.RemoveAllRows
+		  For Each Line As String In Program.Split(",")
+		    Memory.AddRow Line.Val
+		  Next
+		  
+		  Reset
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -19,7 +40,7 @@ Protected Class IntCodeComputer
 
 	#tag Method, Flags = &h0
 		Sub Run()
-		  Reset
+		  If Status = Statuses.Idle Or Status = Statuses.Terminated Then Status = Statuses.Running
 		  
 		  Do
 		    OpCode = Memory(InstructionPointer)
@@ -44,8 +65,15 @@ Protected Class IntCodeComputer
 		    Case 3
 		      ' Input required
 		      ResultAddress = Memory(InstructionPointer + 1)
-		      Var Input As Integer = InputRequired
-		      Memory(ResultAddress) = Input
+		      If Input.Count = 0 Then
+		        Status = Statuses.WaitingForInput
+		        InputRequired
+		        Return
+		      End If
+		      
+		      Var NextInput As Integer = Input(0)
+		      Input.RemoveRowAt(0)
+		      Memory(ResultAddress) = NextInput
 		      InstructionPointer = InstructionPointer + 2
 		    Case 4
 		      ' Output
@@ -82,22 +110,17 @@ Protected Class IntCodeComputer
 		      Memory(ResultAddress) = If(Noun = Verb, 1, 0)
 		      InstructionPointer = InstructionPointer + 4
 		    Case 99
-		      Terminate
+		      Status = Statuses.Terminated
+		      InstructionPointer = InstructionPointer + 1
+		      Finished
 		    Else
 		      Var E As New RuntimeException
 		      E.Message = "OpCode (" + OpCode.ToString + ") is not valid"
 		      Raise E
 		    End Select
-		  Loop Until Terminated Or InstructionPointer >= Memory.Count
+		  Loop Until Status = Statuses.Terminated
 		  
 		  Finished
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Terminate()
-		  Terminated = True
-		  InstructionPointer = InstructionPointer + 1
 		End Sub
 	#tag EndMethod
 
@@ -107,13 +130,17 @@ Protected Class IntCodeComputer
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event InputRequired() As Integer
+		Event InputRequired()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event Output(Message As Integer)
 	#tag EndHook
 
+
+	#tag Property, Flags = &h0
+		Input() As Integer
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		InstructionPointer As Integer = 0
@@ -136,16 +163,20 @@ Protected Class IntCodeComputer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		#tag Note
-			
-			o
-		#tag EndNote
-		Terminated As Boolean = False
+		Status As Statuses = Statuses.Idle
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		Verb As Integer = 0
 	#tag EndProperty
+
+
+	#tag Enum, Name = Statuses, Type = Integer, Flags = &h0
+		Idle
+		  WaitingForInput
+		  Running
+		Terminated
+	#tag EndEnum
 
 
 	#tag ViewBehavior
@@ -222,20 +253,26 @@ Protected Class IntCodeComputer
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Terminated"
-			Visible=false
-			Group="Behavior"
-			InitialValue="False"
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Verb"
 			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
 			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Status"
+			Visible=false
+			Group="Behavior"
+			InitialValue="Statuses.Idle"
+			Type="Statuses"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Idle"
+				"1 - WaitingForInput"
+				"2 - Running"
+				"3 - Terminated"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -45,7 +45,7 @@ Begin Window MainWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   5
+      PanelCount      =   6
       Panels          =   ""
       Scope           =   0
       TabIndex        =   0
@@ -54,7 +54,7 @@ Begin Window MainWindow
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   4
+      Value           =   5
       Visible         =   True
       Width           =   600
       Begin FuelCalculatorContainerControl FuelCalculator
@@ -211,6 +211,40 @@ Begin Window MainWindow
          Visible         =   True
          Width           =   600
       End
+      Begin ThrustersContainerControl ThrustersContainerControl1
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         Csv             =   ""
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         HasBackgroundColor=   False
+         Height          =   400
+         HighestOutputSignal=   0
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         NextPhase       =   0
+         Program         =   ""
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   6
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Transparent     =   True
+         Visible         =   True
+         Width           =   600
+      End
    End
 End
 #tag EndWindow
@@ -226,6 +260,7 @@ End
 		  Me.WiringToolItem.Tag = 2
 		  Me.SecureContainerToolItem.Tag = 3
 		  Me.OrbitMapToolItem.Tag = 4
+		  Me.ThrustersToolItem.Tag = 5
 		  ToolbarButton(Me.FuelCalculatorToolItem).Pressed = True
 		End Sub
 	#tag EndEvent

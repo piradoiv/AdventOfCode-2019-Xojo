@@ -30,5 +30,11 @@ Begin Toolbar MainAppToolbar
 		ButtonStyle = 2
 		Icon = 1396832255
 	End
+	Begin ToolbarButton ThrustersToolItem
+		Caption = "Thrusters"
+		Tooltip = ""
+		ButtonStyle = 2
+		Icon = 555382783
+	End
 End
 #tag EndToolbar

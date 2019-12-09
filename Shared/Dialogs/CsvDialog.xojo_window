@@ -190,6 +190,20 @@ End
 		Csv As String
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return CsvLabel.Value
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  CsvLabel.Value = value
+			End Set
+		#tag EndSetter
+		Label As String
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h21
 		Private mCsv As String
 	#tag EndProperty
@@ -451,6 +465,14 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Csv"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Label"
 		Visible=false
 		Group="Behavior"
 		InitialValue=""

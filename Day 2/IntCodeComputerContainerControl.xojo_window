@@ -277,7 +277,6 @@ Begin ContainerControl IntCodeComputerContainerControl
       Width           =   100
    End
    Begin Thread BackgroundThread
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -332,6 +331,70 @@ Begin ContainerControl IntCodeComputerContainerControl
       Value           =   ""
       Visible         =   True
       Width           =   368
+   End
+   Begin PushButton StartAndResetPushButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Start and Reset"
+      Default         =   False
+      Enabled         =   False
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   112
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      MacButtonStyle  =   "0"
+      Scope           =   0
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   254
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   125
+   End
+   Begin PushButton ClearOutputPushButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Clear output"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   293
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      MacButtonStyle  =   "0"
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   254
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   95
    End
 End
 #tag EndWindow
@@ -393,17 +456,30 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function HandleInputRequired(Sender As IntCodeComputer) As Integer
+		Sub HandleInputRequired(Sender As IntCodeComputer)
 		  Var d As New InputDialog
 		  d.ShowModalWithin(Self.Window)
 		  Var InputMessage As Integer = d.InputMessage.Val
-		  Return InputMessage
-		End Function
+		  OutputTextArea.AddText "< " + d.InputMessage + EndOfLine
+		  Computer.AddInput InputMessage
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub HandleOutput(Sender As IntCodeComputer, Message As Integer)
-		  OutputTextArea.AddText Message.ToString + EndOfLine
+		  OutputTextArea.AddText "> " + Message.ToString + EndOfLine
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub LoadProgramFromCsv(csv As String)
+		  PreviousCsv = csv
+		  Memory.RemoveAllRows
+		  For Each Line As String In csv.Split(",")
+		    Memory.AddRow Line.Val
+		  Next
+		  
+		  RefreshMemory
 		End Sub
 	#tag EndMethod
 
@@ -416,13 +492,13 @@ End
 		  Next
 		  
 		  StartPushButton.Enabled = Memory.Count > 0
+		  StartAndResetPushButton.Enabled = Memory.Count > 0
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub RunComputer()
 		  #Pragma BreakOnExceptions False
-		  OutputTextArea.Value = ""
 		  RunningProgressWheel.Visible = True
 		  Var RunJustOnce As Boolean = DesiredOutputTextField.Value.Trim = ""
 		  
@@ -501,14 +577,7 @@ End
 		  d.Csv = PreviousCsv
 		  d.ShowModalWithin(Self.Window)
 		  If d.Csv = "" Then Return
-		  
-		  PreviousCsv = d.Csv
-		  Memory.RemoveAllRows
-		  For Each Line As String In d.Csv.Split(",")
-		    Memory.AddRow Line.Val
-		  Next
-		  
-		  RefreshMemory
+		  LoadProgramFromCsv(d.Csv)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -523,6 +592,21 @@ End
 		  Var Result As Dictionary = data(data.LastRowIndex)
 		  Memory = Result.Value("memory")
 		  RefreshMemory
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events StartAndResetPushButton
+	#tag Event
+		Sub Action()
+		  RunComputer
+		  LoadProgramFromCsv(PreviousCsv)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClearOutputPushButton
+	#tag Event
+		Sub Action()
+		  OutputTextArea.Value = ""
 		End Sub
 	#tag EndEvent
 #tag EndEvents
