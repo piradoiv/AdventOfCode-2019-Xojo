@@ -1,5 +1,5 @@
 #tag Window
-Begin ContainerControl AmplifierContainerControl
+Begin ContainerControl CommunicationsContainerControl
    AllowAutoDeactivate=   True
    AllowFocus      =   False
    AllowFocusRing  =   False
@@ -10,7 +10,7 @@ Begin ContainerControl AmplifierContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   42
+   Height          =   300
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -24,62 +24,54 @@ Begin ContainerControl AmplifierContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   42
-   Begin RoundRectangle AmplifierRoundRectangle
+   Width           =   300
+   Begin PushButton LoadImagePushButton
       AllowAutoDeactivate=   True
-      BorderColor     =   &c00000000
-      BorderThickness =   1.0
-      CornerHeight    =   16.0
-      CornerWidth     =   16.0
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Load image"
+      Default         =   False
       Enabled         =   True
-      FillColor       =   &cFFFFFF00
-      Height          =   42
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
-      LockBottom      =   True
+      Italic          =   False
+      Left            =   188
+      LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
+      LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
+      MacButtonStyle  =   "0"
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   0
+      Top             =   20
       Transparent     =   False
+      Underline       =   False
       Visible         =   True
-      Width           =   42
+      Width           =   92
    End
-   Begin IntCodeComputer Computer
-      Enabled         =   True
-      Index           =   -2147483648
-      InstructionPointer=   0
-      LockedInPosition=   False
-      Noun            =   0
-      OpCode          =   99
-      ResultAddress   =   0
-      Scope           =   0
-      Status          =   "Statuses.Idle"
-      TabPanelIndex   =   0
-      Verb            =   0
-   End
-   Begin Label PhaseLabel
+   Begin Label ChecksumLabel
       AllowAutoDeactivate=   True
-      Bold            =   True
+      Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   42
+      Height          =   20
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   0
-      LockBottom      =   True
+      Left            =   20
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
@@ -90,90 +82,172 @@ Begin ContainerControl AmplifierContainerControl
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextAlignment   =   "2"
+      TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   0
+      Top             =   20
       Transparent     =   False
       Underline       =   False
-      Value           =   "-"
+      Value           =   "Checksum: n/a"
       Visible         =   True
-      Width           =   42
+      Width           =   156
+   End
+   Begin Canvas ImageCanvas
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   True
+      AllowTabs       =   False
+      Backdrop        =   0
+      Enabled         =   True
+      Height          =   60
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   52
+      Transparent     =   True
+      Visible         =   True
+      Width           =   250
    End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Sub AddInput(NewInput As Integer)
-		  Input.AddRow NewInput
-		  If Computer.Status <> IntCodeComputer.Statuses.Running Then Computer.Run
+		Function CalculateImageChecksum() As Integer
+		  Var FewestZeroesCount As Integer = -1
+		  Var LayerIndexWithFewestZeroes As Integer
+		  Var Checksum As Integer
+		  
+		  For I As Integer = 0 To StringLayers.LastRowIndex
+		    Var Layer As String = StringLayers(I)
+		    Var Chars() As String = Layer.Split("")
+		    Var Zeroes, One, Two As Integer
+		    For Each Char As String In Chars
+		      If Char = "0" Then Zeroes = Zeroes + 1
+		      If Char = "1" Then One = One + 1
+		      If Char = "2" Then Two = Two + 1
+		    Next
+		    
+		    If FewestZeroesCount = -1 Or Zeroes < FewestZeroesCount Then
+		      FewestZeroesCount = Zeroes
+		      LayerIndexWithFewestZeroes = I
+		      Checksum = One * Two
+		    End If
+		  Next
+		  
+		  Return Checksum
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CreateImageLayers()
+		  Layers.RemoveAllRows
+		  For Each StringLayer As String In StringLayers
+		    Var LayerRows() As String = SplitLayerIntoRows(StringLayer)
+		    Var LayerImage As New Picture(ImageWidth * 10, ImageHeight * 10)
+		    Var g As Graphics = LayerImage.Graphics
+		    
+		    For Y As Integer = 0 To LayerRows.LastRowIndex
+		      For X As Integer = 0 To LayerRows(Y).Length - 1
+		        Var RowPixels() As String = LayerRows(Y).Split("")
+		        Select Case RowPixels(X)
+		        Case "0"
+		          g.DrawingColor = Color.Black
+		        Case "1"
+		          g.DrawingColor = Color.White
+		        Case "2"
+		          g.DrawingColor = Color.Clear
+		        End Select
+		        
+		        g.FillRectangle X * 10, Y * 10, 10, 10
+		      Next
+		    Next
+		    
+		    Layers.AddRow LayerImage
+		  Next
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub LoadProgram(Program As String, Phase As Integer)
-		  Computer.LoadProgram Program
+		Sub SplitImageIntoStringLayers()
+		  StringLayers.RemoveAllRows
+		  Var PixelsPerLayer As Integer = ImageWidth * ImageHeight
+		  
+		  Var Image As String = ImageStr
+		  While Image.Length >= PixelsPerLayer
+		    Var Layer As String = Image.Left(PixelsPerLayer)
+		    Image = Image.Right(Image.Length - PixelsPerLayer)
+		    StringLayers.AddRow Layer
+		  Wend
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function SplitLayerIntoRows(LayerString As String) As String()
+		  Var Result() As String
+		  While LayerString.Length >= ImageWidth
+		    Var Line As String = LayerString.Left(ImageWidth)
+		    LayerString = LayerString.Right(LayerString.Length - ImageWidth)
+		    Result.AddRow Line
+		  Wend
+		  
+		  Return Result
+		End Function
+	#tag EndMethod
 
-	#tag Hook, Flags = &h0
-		Event OutputReady(Message As Integer)
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event ValueChanged()
-	#tag EndHook
-
-
-	#tag Property, Flags = &h0
-		Input() As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mPhase As Integer
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mPhase
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mPhase = value
-			  PhaseLabel.Value = value.ToString
-			End Set
-		#tag EndSetter
-		Phase As Integer
-	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
-		PhaseConfigured As Boolean = False
+		ImageStr As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Updating As Boolean = False
+		Layers() As Picture
 	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		StringLayers() As String
+	#tag EndProperty
+
+
+	#tag Constant, Name = ImageHeight, Type = Double, Dynamic = False, Default = \"6", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ImageWidth, Type = Double, Dynamic = False, Default = \"25", Scope = Public
+	#tag EndConstant
 
 
 #tag EndWindowCode
 
-#tag Events Computer
+#tag Events LoadImagePushButton
 	#tag Event
-		Sub InputRequired()
-		  Var Result As Integer = If(PhaseConfigured, Input(0), Phase)
-		  PhaseConfigured = True
-		  Input.RemoveRowAt(0)
-		  Me.AddInput Result
+		Sub Action()
+		  Var d As New CsvDialog
+		  d.ShowModalWithin(Self.Window)
+		  ImageStr = d.Csv
+		  SplitImageIntoStringLayers
+		  ChecksumLabel.Value = "Checksum: " + CalculateImageChecksum.ToString
+		  CreateImageLayers
+		  ImageCanvas.Invalidate
 		End Sub
 	#tag EndEvent
+#tag EndEvents
+#tag Events ImageCanvas
 	#tag Event
-		Sub Output(Message As Integer)
-		  OutputReady Message
-		  PhaseConfigured = False
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  For I As Integer = Layers.LastRowIndex DownTo 0
+		    Var Layer As Picture = Layers(I)
+		    g.DrawPicture Layer, 0, 0, g.Width, g.Height, 0, 0, Layer.Width, Layer.Height
+		  Next
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -395,27 +469,11 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="PhaseConfigured"
-		Visible=false
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Phase"
+		Name="ImageStr"
 		Visible=false
 		Group="Behavior"
 		InitialValue=""
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Updating"
-		Visible=false
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
+		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior

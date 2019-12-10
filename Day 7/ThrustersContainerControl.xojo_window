@@ -26,12 +26,15 @@ Begin ContainerControl ThrustersContainerControl
    Visible         =   True
    Width           =   600
    Begin Line FeedbackLoopVerticalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "0"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -41,12 +44,15 @@ Begin ContainerControl ThrustersContainerControl
       Y2              =   233.0
    End
    Begin Line InputHorizontalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "1"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -67,6 +73,7 @@ Begin ContainerControl ThrustersContainerControl
       EraseBackground =   True
       HasBackgroundColor=   False
       Height          =   42
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   103
       LockBottom      =   False
@@ -99,6 +106,7 @@ Begin ContainerControl ThrustersContainerControl
       EraseBackground =   True
       HasBackgroundColor=   False
       Height          =   42
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   193
       LockBottom      =   False
@@ -131,6 +139,7 @@ Begin ContainerControl ThrustersContainerControl
       EraseBackground =   True
       HasBackgroundColor=   False
       Height          =   42
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   283
       LockBottom      =   False
@@ -163,6 +172,7 @@ Begin ContainerControl ThrustersContainerControl
       EraseBackground =   True
       HasBackgroundColor=   False
       Height          =   42
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   373
       LockBottom      =   False
@@ -217,12 +227,15 @@ Begin ContainerControl ThrustersContainerControl
       Width           =   120
    End
    Begin Line OutputVerticalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "7"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -232,12 +245,15 @@ Begin ContainerControl ThrustersContainerControl
       Y2              =   312.0
    End
    Begin Line OutputHorizontalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "8"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -247,12 +263,15 @@ Begin ContainerControl ThrustersContainerControl
       Y2              =   312.0
    End
    Begin Line FeedbackLoopHorizontalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "9"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -343,6 +362,7 @@ Begin ContainerControl ThrustersContainerControl
       EraseBackground =   True
       HasBackgroundColor=   False
       Height          =   42
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   463
       LockBottom      =   False
@@ -364,12 +384,15 @@ Begin ContainerControl ThrustersContainerControl
       Width           =   42
    End
    Begin Line PreFeedbackVerticalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "13"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -379,12 +402,15 @@ Begin ContainerControl ThrustersContainerControl
       Y2              =   233.0
    End
    Begin Line PreFeedbackHorizontalLine
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
+      TabIndex        =   "14"
       TabPanelIndex   =   0
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -560,6 +586,7 @@ Begin ContainerControl ThrustersContainerControl
       Width           =   80
    End
    Begin ThrusterCalibrator ThrusterCalibrator1
+      Enabled         =   True
       FeedbackLoopEnabled=   False
       HighestOutput   =   0
       Index           =   -2147483648

@@ -45,12 +45,12 @@ Begin Window MainWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   6
+      PanelCount      =   7
       Panels          =   ""
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -218,7 +218,6 @@ Begin Window MainWindow
          AllowTabs       =   True
          Backdrop        =   0
          BackgroundColor =   &cFFFFFF00
-         Csv             =   ""
          DoubleBuffer    =   False
          Enabled         =   True
          EraseBackground =   True
@@ -245,6 +244,37 @@ Begin Window MainWindow
          Visible         =   True
          Width           =   600
       End
+      Begin CommunicationsContainerControl Communications
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         HasBackgroundColor=   False
+         Height          =   400
+         ImageStr        =   ""
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   7
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Transparent     =   True
+         Visible         =   True
+         Width           =   600
+      End
    End
 End
 #tag EndWindow
@@ -261,6 +291,7 @@ End
 		  Me.SecureContainerToolItem.Tag = 3
 		  Me.OrbitMapToolItem.Tag = 4
 		  Me.ThrustersToolItem.Tag = 5
+		  Me.CommunicationsToolItem.Tag = 6
 		  ToolbarButton(Me.FuelCalculatorToolItem).Pressed = True
 		End Sub
 	#tag EndEvent

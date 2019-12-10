@@ -36,5 +36,10 @@ Begin Toolbar MainAppToolbar
 		ButtonStyle = 2
 		Icon = 555382783
 	End
+	Begin ToolbarButton CommunicationsToolItem
+		Caption = "Communications"
+		Tooltip = ""
+		ButtonStyle = 2
+	End
 End
 #tag EndToolbar
