@@ -98,6 +98,7 @@ Begin ContainerControl CommunicationsContainerControl
       AllowFocusRing  =   True
       AllowTabs       =   False
       Backdrop        =   0
+      DoubleBuffer    =   False
       Enabled         =   True
       Height          =   60
       Index           =   -2147483648

@@ -8,9 +8,9 @@ Protected Class IntCode
 		  Var CodeStr As String = Codes(Codes.LastRowIndex - 1) + Codes(Codes.LastRowIndex)
 		  Result.Code = CodeStr.ToInteger
 		  
-		  Result.Modes.ResizeTo(Codes.LastRowIndex - 2)
-		  For I As Integer = 0 To Result.Modes.LastRowIndex
-		    Result.Modes(I) = Codes(Codes.LastRowIndex - I - 2).ToInteger
+		  Result.ParamModes.ResizeTo(Codes.LastRowIndex - 2)
+		  For I As Integer = 0 To Result.ParamModes.LastRowIndex
+		    Result.ParamModes(I) = Codes(Codes.LastRowIndex - I - 2).ToInteger
 		  Next
 		  
 		  Return Result
@@ -19,13 +19,22 @@ Protected Class IntCode
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetParameter(ModePosition As Integer, ParameterAddress As Integer, Memory() As Integer) As Integer
-		  Select Case Modes(ModePosition)
-		  Case 0
+		Function GetParameter(Mode As Integer, ParameterAddress As Integer) As Integer
+		  If ParameterAddress > Memory.LastRowIndex Then
+		    Memory.ResizeTo(ParameterAddress)
+		  End If
+		  
+		  Select Case ParamModes(Mode)
+		  Case ModePosition
 		    Var Index As Integer = Memory(ParameterAddress)
 		    Return Memory(Index)
-		  Case 1
+		    
+		  Case ModeInstant
 		    Return Memory(ParameterAddress)
+		    
+		  Case ModeRelative
+		    Var Index As Integer = Memory(ParameterAddress) + RelativeBase
+		    Return Memory(Index)
 		  End Select
 		End Function
 	#tag EndMethod
@@ -36,8 +45,26 @@ Protected Class IntCode
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Modes() As Integer
+		Memory() As Integer
 	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ParamModes() As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		RelativeBase As Integer = 0
+	#tag EndProperty
+
+
+	#tag Constant, Name = ModeInstant, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ModePosition, Type = Double, Dynamic = False, Default = \"0", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ModeRelative, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
 
 
 	#tag ViewBehavior
@@ -86,6 +113,14 @@ Protected Class IntCode
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RelativeBase"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

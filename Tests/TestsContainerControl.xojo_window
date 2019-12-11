@@ -1,5 +1,5 @@
 #tag Window
-Begin ContainerControl FuelCalculatorContainerControl
+Begin ContainerControl TestsContainerControl
    AllowAutoDeactivate=   True
    AllowFocus      =   False
    AllowFocusRing  =   False
@@ -10,7 +10,7 @@ Begin ContainerControl FuelCalculatorContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   290
+   Height          =   300
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -25,11 +25,12 @@ Begin ContainerControl FuelCalculatorContainerControl
    Transparent     =   True
    Visible         =   True
    Width           =   300
-   Begin Label InputLabel
+   Begin PushButton RunTestsPushButton
       AllowAutoDeactivate=   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
+      Cancel          =   False
+      Caption         =   "Run Tests"
+      Default         =   False
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
@@ -42,27 +43,23 @@ Begin ContainerControl FuelCalculatorContainerControl
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
-      Multiline       =   False
+      MacButtonStyle  =   "0"
       Scope           =   0
-      Selectable      =   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   20
       Transparent     =   False
       Underline       =   False
-      Value           =   "Input:"
       Visible         =   True
-      Width           =   260
+      Width           =   128
    End
-   Begin TextArea InputTextArea
+   Begin TextArea TestsOutputTextArea
       AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
+      AllowFocusRing  =   False
       AllowSpellChecking=   True
       AllowStyledText =   False
       AllowTabs       =   False
@@ -75,14 +72,14 @@ Begin ContainerControl FuelCalculatorContainerControl
       FontSize        =   0.0
       FontUnit        =   0
       Format          =   ""
-      HasBorder       =   True
+      HasBorder       =   False
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
-      Height          =   168
+      Height          =   240
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   20
+      Left            =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   True
@@ -100,97 +97,13 @@ Begin ContainerControl FuelCalculatorContainerControl
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   44
+      Top             =   60
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   260
-   End
-   Begin Label ResultLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   224
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Result:"
-      Visible         =   True
-      Width           =   260
-   End
-   Begin TextField ResultTextField
-      AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
-      AllowSpellChecking=   False
-      AllowTabs       =   False
-      BackgroundColor =   &cFFFFFF00
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Format          =   ""
-      HasBorder       =   True
-      Height          =   22
-      Hint            =   ""
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      MaximumCharactersAllowed=   0
-      Password        =   False
-      ReadOnly        =   True
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   248
-      Transparent     =   False
-      Underline       =   False
-      ValidationMask  =   ""
-      Value           =   "0"
-      Visible         =   True
-      Width           =   260
-   End
-   Begin FuelCalculator Calculator
-      Index           =   -2147483648
-      LockedInPosition=   False
-      Scope           =   0
-      TabPanelIndex   =   0
+      Width           =   300
    End
 End
 #tag EndWindow
@@ -198,13 +111,15 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events InputTextArea
+#tag Events RunTestsPushButton
 	#tag Event
-		Sub TextChange()
-		  ResultTextField.Value = "0"
-		  Var Modules() As Integer = Calculator.GetModulesFromRawString(InputTextArea.Value)
-		  Var Result As Integer = Calculator.CalculateFuelNeededForAllModules(Modules)
-		  ResultTextField.Value = Result.ToString
+		Sub Action()
+		  Try
+		    Var t As New IntCodeComputerTests
+		    t.RunTests
+		  Catch E As RuntimeException
+		    TestsOutputTextArea.AddText E.Message + EndOfLine
+		  End Try
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -29,6 +29,16 @@ Protected Class IntCodeComputer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Read(Address As Integer) As Integer
+		  If Address < 0 Then
+		    Return 0
+		  End If
+		  If Address > Memory.LastRowIndex Then Memory.ResizeTo(Address)
+		  Return Memory(Address)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Reset()
 		  InstructionPointer = 0
 		  OpCode = 99
@@ -45,70 +55,81 @@ Protected Class IntCodeComputer
 		  Do
 		    OpCode = Memory(InstructionPointer)
 		    Var IntCode As IntCode = IntCode.FromCode(OpCode)
+		    IntCode.Memory = Memory
+		    IntCode.RelativeBase = RelativeBase
 		    Var Noun, Verb, ResultAddress As Integer
 		    
 		    Select Case IntCode.Code
 		    Case 1
 		      ' Sum
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
-		      Verb = IntCode.GetParameter(1, InstructionPointer + 2, Memory)
-		      ResultAddress = Memory(InstructionPointer + 3)
-		      Memory(ResultAddress) = Noun + Verb
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      Verb = IntCode.GetParameter(1, InstructionPointer + 2)
+		      ResultAddress = Read(InstructionPointer + 3)
+		      If IntCode.ParamModes(2) = IntCode.ModeRelative Then ResultAddress = ResultAddress + RelativeBase
+		      Write(ResultAddress, Noun + Verb)
 		      InstructionPointer = InstructionPointer + 4
 		    Case 2
 		      ' Multiply
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
-		      Verb = IntCode.GetParameter(1, InstructionPointer + 2, Memory)
-		      ResultAddress = Memory(InstructionPointer + 3)
-		      Memory(ResultAddress) = Noun * Verb
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      Verb = IntCode.GetParameter(1, InstructionPointer + 2)
+		      ResultAddress = Read(InstructionPointer + 3)
+		      If IntCode.ParamModes(2) = IntCode.ModeRelative Then ResultAddress = ResultAddress + RelativeBase
+		      Write(ResultAddress, Noun * Verb)
 		      InstructionPointer = InstructionPointer + 4
 		    Case 3
 		      ' Input required
-		      ResultAddress = Memory(InstructionPointer + 1)
 		      If Input.Count = 0 Then
 		        Status = Statuses.WaitingForInput
 		        InputRequired
 		        Return
 		      End If
 		      
+		      ResultAddress = Read(InstructionPointer + 1)
+		      If IntCode.ParamModes(0) = IntCode.ModeRelative Then ResultAddress = ResultAddress + RelativeBase
 		      Var NextInput As Integer = Input(0)
 		      Input.RemoveRowAt(0)
-		      Memory(ResultAddress) = NextInput
+		      Write(ResultAddress, NextInput)
 		      InstructionPointer = InstructionPointer + 2
 		    Case 4
 		      ' Output
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
 		      Var OutputMessage As Integer = Noun
 		      Output(OutputMessage)
 		      InstructionPointer = InstructionPointer + 2
 		    Case 5
 		      ' jump-if-true: if the first parameter is non-zero, it sets the instruction pointer
 		      ' to the value from the second parameter. Otherwise, it does nothing.
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
-		      Verb = IntCode.GetParameter(1, InstructionPointer + 2, Memory)
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      Verb = IntCode.GetParameter(1, InstructionPointer + 2)
 		      InstructionPointer = If(Noun <> 0, Verb, InstructionPointer + 3)
 		    Case 6
 		      ' jump-if-false: if the first parameter is zero, it sets the instruction pointer
 		      ' to the value from the second parameter. Otherwise, it does nothing.
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
-		      Verb = IntCode.GetParameter(1, InstructionPointer + 2, Memory)
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      Verb = IntCode.GetParameter(1, InstructionPointer + 2)
 		      InstructionPointer = If(Noun = 0, Verb, InstructionPointer + 3)
 		    Case 7
 		      ' less than: if the first parameter is less than the second parameter, it stores 1 in
 		      ' the position given by the third parameter. Otherwise, it stores 0.
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
-		      Verb = IntCode.GetParameter(1, InstructionPointer + 2, Memory)
-		      ResultAddress = Memory(InstructionPointer + 3)
-		      Memory(ResultAddress) = If(Noun < Verb, 1, 0)
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      Verb = IntCode.GetParameter(1, InstructionPointer + 2)
+		      ResultAddress = Read(InstructionPointer + 3)
+		      If IntCode.ParamModes(2) = IntCode.ModeRelative Then ResultAddress = ResultAddress + RelativeBase
+		      Write(ResultAddress, If(Noun < Verb, 1, 0))
 		      InstructionPointer = InstructionPointer + 4
 		    Case 8
 		      ' equals: if the first parameter is equal to the second parameter, it stores 1 in the
 		      ' position given by the third parameter. Otherwise, it stores 0.
-		      Noun = IntCode.GetParameter(0, InstructionPointer + 1, Memory)
-		      Verb = IntCode.GetParameter(1, InstructionPointer + 2, Memory)
-		      ResultAddress = Memory(InstructionPointer + 3)
-		      Memory(ResultAddress) = If(Noun = Verb, 1, 0)
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      Verb = IntCode.GetParameter(1, InstructionPointer + 2)
+		      ResultAddress = Read(InstructionPointer + 3)
+		      If IntCode.ParamModes(2) = IntCode.ModeRelative Then ResultAddress = ResultAddress + RelativeBase
+		      Write(ResultAddress, If(Noun = Verb, 1, 0))
 		      InstructionPointer = InstructionPointer + 4
+		    Case 9
+		      Noun = IntCode.GetParameter(0, InstructionPointer + 1)
+		      RelativeBase = RelativeBase + Noun
+		      InstructionPointer = InstructionPointer + 2
 		    Case 99
 		      Status = Statuses.Terminated
 		      InstructionPointer = InstructionPointer + 1
@@ -121,6 +142,16 @@ Protected Class IntCodeComputer
 		  Loop Until Status = Statuses.Terminated
 		  
 		  Finished
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Write(Address As Integer, Value As Integer)
+		  If Address < 0 Then
+		    Return
+		  End If
+		  If Address > Memory.LastRowIndex Then Memory.ResizeTo(Address)
+		  Memory(Address) = Value
 		End Sub
 	#tag EndMethod
 
@@ -156,6 +187,10 @@ Protected Class IntCodeComputer
 
 	#tag Property, Flags = &h0
 		OpCode As Integer = 99
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		RelativeBase As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -273,6 +308,14 @@ Protected Class IntCodeComputer
 				"2 - Running"
 				"3 - Terminated"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RelativeBase"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

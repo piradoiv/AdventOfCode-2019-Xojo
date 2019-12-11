@@ -41,5 +41,15 @@ Begin Toolbar MainAppToolbar
 		Tooltip = ""
 		ButtonStyle = 2
 	End
+	Begin ToolbarButton SpaceToolItem
+		Caption = "Untitled"
+		Tooltip = ""
+		ButtonStyle = 6
+	End
+	Begin ToolbarButton TestsToolItem
+		Caption = "Tests"
+		Tooltip = ""
+		ButtonStyle = 2
+	End
 End
 #tag EndToolbar

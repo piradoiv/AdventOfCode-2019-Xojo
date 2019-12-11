@@ -45,7 +45,7 @@ Begin ContainerControl AmplifierContainerControl
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   True
+      TabStop         =   "True"
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -59,6 +59,7 @@ Begin ContainerControl AmplifierContainerControl
       LockedInPosition=   False
       Noun            =   0
       OpCode          =   99
+      RelativeBase    =   0
       ResultAddress   =   0
       Scope           =   0
       Status          =   "Statuses.Idle"

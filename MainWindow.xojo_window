@@ -45,16 +45,15 @@ Begin Window MainWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   7
+      PanelCount      =   8
       Panels          =   ""
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   5
+      Value           =   7
       Visible         =   True
       Width           =   600
       Begin FuelCalculatorContainerControl FuelCalculator
@@ -69,7 +68,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -99,7 +97,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -132,7 +129,6 @@ Begin Window MainWindow
          GridSize        =   4
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -163,7 +159,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -193,7 +188,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -224,7 +218,6 @@ Begin Window MainWindow
          HasBackgroundColor=   False
          Height          =   400
          HighestOutputSignal=   0
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -257,7 +250,6 @@ Begin Window MainWindow
          HasBackgroundColor=   False
          Height          =   400
          ImageStr        =   ""
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -268,6 +260,35 @@ Begin Window MainWindow
          Scope           =   0
          TabIndex        =   0
          TabPanelIndex   =   7
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Transparent     =   True
+         Visible         =   True
+         Width           =   600
+      End
+      Begin TestsContainerControl TestsContainerControl1
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         HasBackgroundColor=   False
+         Height          =   400
+         InitialParent   =   "AppPagePanel"
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   8
          TabStop         =   True
          Tooltip         =   ""
          Top             =   0
@@ -292,6 +313,7 @@ End
 		  Me.OrbitMapToolItem.Tag = 4
 		  Me.ThrustersToolItem.Tag = 5
 		  Me.CommunicationsToolItem.Tag = 6
+		  Me.TestsToolItem.Tag = 7
 		  ToolbarButton(Me.FuelCalculatorToolItem).Pressed = True
 		End Sub
 	#tag EndEvent
