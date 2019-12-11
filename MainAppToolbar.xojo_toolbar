@@ -40,6 +40,13 @@ Begin Toolbar MainAppToolbar
 		Caption = "Communications"
 		Tooltip = ""
 		ButtonStyle = 2
+		Icon = 1341515775
+	End
+	Begin ToolbarButton MonitoringToolItem
+		Caption = "Monitoring"
+		Tooltip = ""
+		ButtonStyle = 2
+		Icon = 1155778559
 	End
 	Begin ToolbarButton SpaceToolItem
 		Caption = "Untitled"
@@ -50,6 +57,7 @@ Begin Toolbar MainAppToolbar
 		Caption = "Tests"
 		Tooltip = ""
 		ButtonStyle = 2
+		Icon = 214192127
 	End
 End
 #tag EndToolbar
