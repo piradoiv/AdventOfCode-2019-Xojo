@@ -16,11 +16,8 @@ Protected Class Asteroid
 
 	#tag Method, Flags = &h0
 		Function AngleTo(Other As Asteroid) As Double
-		  Var PointToOther As New Point
-		  PointToOther.X = Other.Position.X - Position.X
-		  PointToOther.Y = Other.Position.Y - Position.Y
-		  
-		  Return Atan2(PointToOther.Y, PointToOther.X)
+		  Var Result As Double = ATan2(Position.Y - Other.Position.Y, Position.X - Other.Position.X) - (Pi / 2)
+		  Return If(Result < 0, Result + 2 * Pi, Result)
 		End Function
 	#tag EndMethod
 
@@ -41,6 +38,10 @@ Protected Class Asteroid
 	#tag Property, Flags = &h0
 		Targets As Dictionary
 	#tag EndProperty
+
+
+	#tag Constant, Name = Pi, Type = Double, Dynamic = False, Default = \"3.14159265358979323846", Scope = Public
+	#tag EndConstant
 
 
 	#tag ViewBehavior

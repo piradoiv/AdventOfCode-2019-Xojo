@@ -117,6 +117,8 @@ End
 		  Try
 		    Var t As New IntCodeComputerTests
 		    t.RunTests
+		    Var tMath As New MathTests
+		    tMath.RunTests
 		  Catch E As RuntimeException
 		    TestsOutputTextArea.AddText E.Message + EndOfLine
 		  End Try

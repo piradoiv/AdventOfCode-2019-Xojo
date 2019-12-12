@@ -59,6 +59,7 @@ MultiImage=chemistry;Icons/chemistry.xojo_image;&h000000000CC44FFF;&h00000000100
 MultiImage=meteorite;Icons/meteorite.xojo_image;&h0000000044E3C7FF;&h0000000010047FFF;false
 Window=MonitoringContainerControl;Day 10/MonitoringContainerControl.xojo_window;&h000000004E4F27FF;&h00000000345F9FFF;false
 Class=Asteroid;Day 10/Asteroid.xojo_code;&h0000000031D4BFFF;&h00000000345F9FFF;false
+Class=MathTests;Tests/MathTests.xojo_code;&h000000005B7F1FFF;&h0000000004EA97FF;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
