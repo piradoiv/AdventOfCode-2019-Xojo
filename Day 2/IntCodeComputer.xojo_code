@@ -3,10 +3,6 @@ Protected Class IntCodeComputer
 	#tag Method, Flags = &h0
 		Sub AddInput(Input As Integer)
 		  Self.Input.AddRow Input
-		  If Status = Statuses.WaitingForInput Then
-		    Status = Statuses.Running
-		    Run
-		  End If
 		End Sub
 	#tag EndMethod
 
@@ -81,6 +77,10 @@ Protected Class IntCodeComputer
 		      If Input.Count = 0 Then
 		        Status = Statuses.WaitingForInput
 		        InputRequired
+		        WakeUpTimer = New Timer
+		        AddHandler WakeUpTimer.Action, WeakAddressOf WakeUpActionHandler
+		        WakeUpTimer.Period = 5
+		        WakeUpTimer.RunMode = Timer.RunModes.Multiple
 		        Return
 		      End If
 		      
@@ -146,6 +146,16 @@ Protected Class IntCodeComputer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub WakeUpActionHandler(Sender As Timer)
+		  If Status = Statuses.WaitingForInput And Input.Count > 0 Then
+		    Sender.RunMode = Timer.RunModes.Off
+		    Status = Statuses.Running
+		    Run
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Write(Address As Integer, Value As Integer)
 		  If Address < 0 Then
 		    Return
@@ -203,6 +213,10 @@ Protected Class IntCodeComputer
 
 	#tag Property, Flags = &h0
 		Verb As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		WakeUpTimer As Timer
 	#tag EndProperty
 
 

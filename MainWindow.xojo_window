@@ -45,16 +45,16 @@ Begin Window MainWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      PanelCount      =   9
+      PanelCount      =   10
       Panels          =   ""
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   8
+      Value           =   9
       Visible         =   True
       Width           =   600
       Begin FuelCalculatorContainerControl FuelCalculator
@@ -336,6 +336,37 @@ Begin Window MainWindow
          Visible         =   True
          Width           =   600
       End
+      Begin HullContainerControl HullContainerControl1
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         HasBackgroundColor=   False
+         Height          =   400
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Left            =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Program         =   ""
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   10
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   0
+         Transparent     =   True
+         Visible         =   True
+         Width           =   600
+      End
    End
 End
 #tag EndWindow
@@ -355,6 +386,7 @@ End
 		  Me.CommunicationsToolItem.Tag = 6
 		  Me.TestsToolItem.Tag = 7
 		  Me.MonitoringToolItem.Tag = 8
+		  Me.HullToolItem.Tag = 9
 		  ToolbarButton(Me.FuelCalculatorToolItem).Pressed = True
 		End Sub
 	#tag EndEvent

@@ -27,7 +27,7 @@ Protected Class IntCode
 		  Select Case ParamModes(Mode)
 		  Case ModePosition
 		    Var Index As Integer = Memory(ParameterAddress)
-		    Return Memory(Index)
+		    Return If(Index > Memory.LastRowIndex, 0, Memory(Index))
 		    
 		  Case ModeInstant
 		    Return Memory(ParameterAddress)
