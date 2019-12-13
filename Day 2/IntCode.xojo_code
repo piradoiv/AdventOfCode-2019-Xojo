@@ -2,8 +2,15 @@
 Protected Class IntCode
 	#tag Method, Flags = &h0
 		Shared Function FromCode(Code As Integer) As IntCode
+		  Const DefaultCharacter = "0"
+		  Const IntCodeDefaultLength = 5
+		  
 		  Var Result As New IntCode
-		  Var CodeStr As String = Code.ToString.LeftPad("0", 5)
+		  Var CodeStr As String = Code.ToString
+		  While CodeStr.Length < IntCodeDefaultLength
+		    CodeStr = DefaultCharacter + CodeStr
+		  Wend
+		  
 		  Var Codes() As String = CodeStr.ToArray("")
 		  Result.Code = CodeStr.Right(2).ToInteger
 		  
