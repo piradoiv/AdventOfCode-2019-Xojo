@@ -2,7 +2,17 @@
 Protected Class Moon
 	#tag Method, Flags = &h0
 		Sub ApplyGravity(OtherPosition As Vector)
-		  Speed.ApplyGravity(Position, OtherPosition)
+		  If Position.X <> OtherPosition.X Then
+		    Speed.X = Speed.X + If(Position.X < OtherPosition.X, 1, -1)
+		  End If
+		  
+		  If Position.Y <> OtherPosition.Y Then
+		    Speed.Y = Speed.Y + If(Position.Y < OtherPosition.Y, 1, -1)
+		  End If
+		  
+		  If Position.Z <> OtherPosition.Z Then
+		    Speed.Z = Speed.Z + If(Position.Z < OtherPosition.Z, 1, -1)
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -14,24 +24,26 @@ Protected Class Moon
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetKin() As Integer
+		  Return Speed.GetEnergy
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetPot() As Integer
+		  Return Position.GetEnergy
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Update()
 		  Position.Add(Speed)
-		  Pot = Position.GetEnergy
-		  Kin = Speed.GetEnergy
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
-		Kin As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		Position As Vector
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Pot As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -77,14 +89,6 @@ Protected Class Moon
 			Visible=true
 			Group="Position"
 			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Position"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

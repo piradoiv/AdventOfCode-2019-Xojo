@@ -9,27 +9,6 @@ Protected Class Vector
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ApplyAxisGravity(Axis As Double, OtherAxis As Double) As Double
-		  Select Case Axis
-		  Case Is < OtherAxis
-		    Return 1
-		  Case Is > OtherAxis
-		    Return -1
-		  Else
-		    Return 0
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub ApplyGravity(Position As Vector, OtherPosition As Vector)
-		  X = X + ApplyAxisGravity(Position.X, OtherPosition.X)
-		  Y = Y + ApplyAxisGravity(Position.Y, OtherPosition.Y)
-		  Z = Z + ApplyAxisGravity(Position.Z, OtherPosition.Z)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub Constructor(X As Double, Y As Double, Z As Double)
 		  Self.X = X
 		  Self.Y = Y
