@@ -277,7 +277,6 @@ Begin ContainerControl IntCodeComputerContainerControl
       Width           =   100
    End
    Begin Thread BackgroundThread
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5

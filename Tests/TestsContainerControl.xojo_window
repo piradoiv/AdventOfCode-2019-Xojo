@@ -115,10 +115,16 @@ End
 	#tag Event
 		Sub Action()
 		  Try
-		    Var t As New IntCodeComputerTests
+		    Var t As UnitTest
+		    
+		    t = New IntCodeComputerTests
 		    t.RunTests
-		    Var tMath As New MathTests
-		    tMath.RunTests
+		    
+		    t = New MathTests
+		    t.RunTests
+		    
+		    t = New StringUtilsTests
+		    t.RunTests
 		  Catch E As RuntimeException
 		    TestsOutputTextArea.AddText E.Message + EndOfLine
 		  End Try

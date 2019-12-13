@@ -73,6 +73,7 @@ MultiImage=satellite;Icons/satellite.xojo_image;&h000000007C14C7FF;&h00000000100
 Window=ArcadeCabinetContainerControl;Day 13/ArcadeCabinetContainerControl.xojo_window;&h0000000017E07FFF;&h000000000DCEBFFF;false
 Class=GameTile;Day 13/GameTile.xojo_code;&h000000000CB0AFFF;&h000000000DCEBFFF;false
 MultiImage=arcade;Icons/arcade.xojo_image;&h0000000039F4AFFF;&h0000000010047FFF;false
+Class=StringUtilsTests;Tests/StringUtilsTests.xojo_code;&h000000000E001FFF;&h0000000004EA97FF;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
