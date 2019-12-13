@@ -183,7 +183,7 @@ Begin ContainerControl NBodyContainerControl
          Index           =   -2147483648
          InitialParent   =   "MoonListbox"
          Italic          =   False
-         Left            =   500
+         Left            =   140
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -214,7 +214,7 @@ Begin ContainerControl NBodyContainerControl
          Index           =   -2147483648
          InitialParent   =   "MoonListbox"
          Italic          =   False
-         Left            =   380
+         Left            =   20
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -256,7 +256,7 @@ Begin ContainerControl NBodyContainerControl
          Index           =   -2147483648
          InitialParent   =   "MoonListbox"
          Italic          =   False
-         Left            =   443
+         Left            =   83
          LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
@@ -279,6 +279,73 @@ Begin ContainerControl NBodyContainerControl
          Value           =   "1"
          Visible         =   True
          Width           =   45
+      End
+      Begin PushButton StartStopPushButton
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Cancel          =   False
+         Caption         =   "Start"
+         Default         =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MoonListbox"
+         Italic          =   False
+         Left            =   500
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   False
+         MacButtonStyle  =   "0"
+         Scope           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   306
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   80
+      End
+      Begin Label CurrentStepLabel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "MoonListbox"
+         Italic          =   False
+         Left            =   232
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   False
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   4
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextAlignment   =   "2"
+         TextColor       =   &c00000000
+         Tooltip         =   ""
+         Top             =   307
+         Transparent     =   False
+         Underline       =   False
+         Value           =   "#CurrentStepLabel_Value"
+         Visible         =   True
+         Width           =   256
       End
    End
    Begin PushButton LoadScanPushButton
@@ -313,10 +380,25 @@ Begin ContainerControl NBodyContainerControl
       Visible         =   True
       Width           =   91
    End
+   Begin Timer SimulationTimer
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Period          =   15
+      RunMode         =   "0"
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  RefreshUI
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub DetectCyclesForMoons(MoonsFirstCycle() As Moon)
 		  Var MoonsCopy() As Moon = GetArrayCopy(MoonsFirstCycle)
@@ -372,6 +454,27 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetSimulationPicture() As Picture
+		  Var Result As New Picture(SimulationCanvas.Width, SimulationCanvas.Height)
+		  Var g As Graphics = Result.Graphics
+		  
+		  Var OffsetX As Double = g.Width / 2
+		  Var OffsetY As Double = g.Height / 2
+		  Const DefaultMoonSize = 4
+		  Const NormalizeValue = 0.2
+		  Const Zoom = 2
+		  
+		  g.DrawingColor = Color.White
+		  For Each m As Moon In Moons
+		    Var MoonSize As Double = DefaultMoonSize * Zoom + m.Position.Z * NormalizeValue
+		    g.FillOval m.Position.X * Zoom + OffsetX, m.Position.Y * Zoom + OffsetY, MoonSize, MoonSize
+		  Next
+		  
+		  Return Result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub RefreshMoonList()
 		  MoonListbox.RemoveAllRows
 		  For Each m As Moon In Moons
@@ -391,8 +494,22 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RefreshUI()
+		  SimulationCanvas.Invalidate
+		  UpdateCurrentStepLabel
+		  RefreshMoonList
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Update()
 		  UpdateMoons(Moons)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UpdateCurrentStepLabel()
+		  CurrentStepLabel.Value = CurrentStepLabel_Value.Replace("{step}", CurrentStep.ToString)
 		End Sub
 	#tag EndMethod
 
@@ -458,6 +575,10 @@ End
 
 
 	#tag Property, Flags = &h0
+		CurrentStep As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Moons() As Moon
 	#tag EndProperty
 
@@ -465,6 +586,13 @@ End
 		OriginalScan As String
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		PreviousPicture As Picture
+	#tag EndProperty
+
+
+	#tag Constant, Name = CurrentStepLabel_Value, Type = String, Dynamic = True, Default = \"Current step: {step}", Scope = Protected
+	#tag EndConstant
 
 	#tag Constant, Name = FactsLabel_Value, Type = String, Dynamic = True, Default = \"- X is repeating after {Xsteps} steps\n- Y is repeating after {Ysteps} steps\n- Z is repeating after {Zsteps} steps", Scope = Protected
 	#tag EndConstant
@@ -475,8 +603,17 @@ End
 #tag Events SimulationCanvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawingColor = Color.Black
-		  g.FillRectangle 0, 0, g.Width, g.Height
+		  Var OffsetX As Double = g.Width / 2
+		  Var OffsetY As Double = g.Height / 2
+		  Const DefaultMoonSize = 4
+		  Const NormalizeValue = 0.2
+		  Const Zoom = 2
+		  
+		  g.DrawingColor = Color.White
+		  For Each m As Moon In Moons
+		    Var MoonSize As Double = DefaultMoonSize * Zoom + m.Position.Z * NormalizeValue
+		    g.FillOval m.Position.X * Zoom + OffsetX, m.Position.Y * Zoom + OffsetY, MoonSize, MoonSize
+		  Next
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -490,11 +627,24 @@ End
 #tag Events UpdatePushButton
 	#tag Event
 		Sub Action()
-		  For I As Integer = 1 To StepsAmountTextField.Value.Val
+		  Var Amount As Integer = StepsAmountTextField.Value.Val
+		  If Amount <= 0 Then Return
+		  
+		  For I As Integer = 1 To Amount
 		    Update
 		  Next
 		  
-		  RefreshMoonList
+		  CurrentStep = CurrentStep + Amount
+		  RefreshUI
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events StartStopPushButton
+	#tag Event
+		Sub Action()
+		  Var ShouldBeEnabled As Boolean = SimulationTimer.RunMode = Timer.RunModes.Off
+		  SimulationTimer.RunMode = If(ShouldBeEnabled, Timer.RunModes.Multiple, Timer.RunModes.Off)
+		  Me.Caption = If(ShouldBeEnabled, "Stop", "Start")
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -507,6 +657,17 @@ End
 		  Moons = GetMoonsFromScan(OriginalScan)
 		  FactsLabel.Value = ""
 		  RefreshMoonList
+		  CurrentStep = 0
+		  UpdateCurrentStepLabel
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SimulationTimer
+	#tag Event
+		Sub Action()
+		  CurrentStep = CurrentStep + 1
+		  Update
+		  RefreshUI
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -734,5 +895,21 @@ End
 		InitialValue=""
 		Type="String"
 		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="CurrentStep"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="PreviousPicture"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
