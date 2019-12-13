@@ -2,22 +2,11 @@
 Protected Module AdventOfCode
 	#tag Method, Flags = &h0
 		Function LeftPad(Extends value As String, DefaultCharacter As String, Amount As Integer) As String
-		  Var OriginalChars() As String = value.ToArray("")
-		  If OriginalChars.Count >= Amount Then Return value
+		  While value.Length < Amount
+		    value = DefaultCharacter + value
+		  Wend
 		  
-		  Var Chars() As String
-		  For Index As Integer = 0 To OriginalChars.LastRowIndex
-		    Chars.AddRow OriginalChars(OriginalChars.LastRowIndex - Index)
-		  Next
-		  Chars.ResizeTo(Amount - 1)
-		  
-		  Var Result() As String
-		  For Index As Integer = 0 To Chars.LastRowIndex
-		    Result.AddRow Chars(Chars.LastRowIndex - Index)
-		    If Result(Result.LastRowIndex) = "" Then Result(Index) = DefaultCharacter
-		  Next
-		  
-		  Return String.FromArray(Result, "")
+		  Return value
 		End Function
 	#tag EndMethod
 
