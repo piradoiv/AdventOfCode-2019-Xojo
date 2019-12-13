@@ -383,7 +383,7 @@ Begin ContainerControl NBodyContainerControl
    Begin Timer SimulationTimer
       Index           =   -2147483648
       LockedInPosition=   False
-      Period          =   15
+      Period          =   30
       RunMode         =   "0"
       Scope           =   0
       TabPanelIndex   =   0
@@ -608,6 +608,9 @@ End
 		  Const DefaultMoonSize = 4
 		  Const NormalizeValue = 0.2
 		  Const Zoom = 2
+		  
+		  g.DrawingColor = Color.Black
+		  g.FillRectangle 0, 0, g.Width, g.Height
 		  
 		  g.DrawingColor = Color.White
 		  For Each m As Moon In Moons
