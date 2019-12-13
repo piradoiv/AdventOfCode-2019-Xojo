@@ -19,24 +19,14 @@ Protected Class IntCode
 
 	#tag Method, Flags = &h0
 		Function GetParameter(Mode As Integer, ParameterAddress As Integer) As Integer
-		  If ParameterAddress > Memory.LastRowIndex Then
-		    Memory.ResizeTo(ParameterAddress)
-		  End If
+		  Var ParamMode As Integer = ParamModes(Mode)
+		  Var Index As Integer = If(ParameterAddress <= Memory.LastRowIndex, Memory(ParameterAddress), 0)
 		  
-		  Select Case ParamModes(Mode)
-		  Case ModePosition
-		    Var Index As Integer = Memory(ParameterAddress)
-		    If Index < 0 Or Index > Memory.LastRowIndex Then Return 0
-		    Return Memory(Index)
-		    
-		  Case ModeInstant
-		    Return Memory(ParameterAddress)
-		    
-		  Case ModeRelative
-		    Var Index As Integer = Memory(ParameterAddress) + RelativeBase
-		    If Index < 0 Or Index > Memory.LastRowIndex Then Return 0
-		    Return Memory(Index)
-		  End Select
+		  If ParamMode = ModeInstant Then Return Index
+		  
+		  If ParamMode = ModeRelative Then Index = Index + RelativeBase
+		  If Index < 0 Or Index > Memory.LastRowIndex Then Return 0
+		  Return Memory(Index)
 		End Function
 	#tag EndMethod
 
