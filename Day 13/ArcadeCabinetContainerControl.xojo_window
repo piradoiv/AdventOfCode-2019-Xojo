@@ -31,6 +31,7 @@ Begin ContainerControl ArcadeCabinetContainerControl
       AllowFocusRing  =   True
       AllowTabs       =   False
       Backdrop        =   0
+      DoubleBuffer    =   False
       Enabled         =   True
       Height          =   300
       Index           =   -2147483648
@@ -87,6 +88,7 @@ Begin ContainerControl ArcadeCabinetContainerControl
       End
    End
    Begin IntCodeComputer Computer
+      Enabled         =   True
       Index           =   -2147483648
       InstructionPointer=   0
       LockedInPosition=   False

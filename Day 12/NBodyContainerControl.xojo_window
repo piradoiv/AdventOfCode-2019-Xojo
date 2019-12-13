@@ -31,6 +31,7 @@ Begin ContainerControl NBodyContainerControl
       AllowFocusRing  =   True
       AllowTabs       =   False
       Backdrop        =   0
+      DoubleBuffer    =   False
       Enabled         =   True
       Height          =   207
       Index           =   -2147483648
@@ -381,6 +382,7 @@ Begin ContainerControl NBodyContainerControl
       Width           =   91
    End
    Begin Timer SimulationTimer
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Period          =   30

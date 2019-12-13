@@ -7,13 +7,6 @@ Protected Class IntCodeComputer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetIntCode(OpCode As Integer) As String()
-		  Var Result() As String = OpCode.ToString.LeftPad("0", 5).ToArray("")
-		  Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub LoadProgram(Program As String)
 		  Memory.RemoveAllRows
 		  For Each Line As String In Program.Split(",")
