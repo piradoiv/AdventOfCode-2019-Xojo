@@ -54,6 +54,11 @@ Begin Toolbar MainAppToolbar
 		ButtonStyle = 2
 		Icon = 733003775
 	End
+	Begin ToolbarButton NBodyToolItem
+		Caption = "Simulation"
+		Tooltip = ""
+		ButtonStyle = 2
+	End
 	Begin ToolbarButton SpaceToolItem
 		Caption = "Untitled"
 		Tooltip = ""
