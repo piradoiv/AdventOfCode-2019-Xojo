@@ -68,6 +68,7 @@ Class=HullPaintingRobot;Day 11/HullPaintingRobot.xojo_code;&h000000003C5E07FF;&h
 Window=NBodyContainerControl;Day 12/NBodyContainerControl.xojo_window;&h00000000317ABFFF;&h000000002B34CFFF;false
 Class=Moon;Day 12/Moon.xojo_code;&h000000000C4D1FFF;&h000000002B34CFFF;false
 Class=Vector;Day 12/Vector.xojo_code;&h0000000053F037FF;&h000000002B34CFFF;false
+MultiImage=satellite;Icons/satellite.xojo_image;&h000000007C14C7FF;&h0000000010047FFF;false
 DefaultWindow=MainWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
