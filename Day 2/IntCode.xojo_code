@@ -3,10 +3,9 @@ Protected Class IntCode
 	#tag Method, Flags = &h0
 		Shared Function FromCode(Code As Integer) As IntCode
 		  Var Result As New IntCode
-		  Var Codes() As String = Code.ToString.LeftPad("0", 5).ToArray("")
-		  
-		  Var CodeStr As String = Codes(Codes.LastRowIndex - 1) + Codes(Codes.LastRowIndex)
-		  Result.Code = CodeStr.ToInteger
+		  Var CodeStr As String = Code.ToString.LeftPad("0", 5)
+		  Var Codes() As String = CodeStr.ToArray("")
+		  Result.Code = CodeStr.Right(2).ToInteger
 		  
 		  Result.ParamModes.ResizeTo(Codes.LastRowIndex - 2)
 		  For I As Integer = 0 To Result.ParamModes.LastRowIndex
@@ -27,13 +26,15 @@ Protected Class IntCode
 		  Select Case ParamModes(Mode)
 		  Case ModePosition
 		    Var Index As Integer = Memory(ParameterAddress)
-		    Return If(Index > Memory.LastRowIndex, 0, Memory(Index))
+		    If Index < 0 Or Index > Memory.LastRowIndex Then Return 0
+		    Return Memory(Index)
 		    
 		  Case ModeInstant
 		    Return Memory(ParameterAddress)
 		    
 		  Case ModeRelative
 		    Var Index As Integer = Memory(ParameterAddress) + RelativeBase
+		    If Index < 0 Or Index > Memory.LastRowIndex Then Return 0
 		    Return Memory(Index)
 		  End Select
 		End Function
