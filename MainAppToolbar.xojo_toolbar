@@ -60,6 +60,12 @@ Begin Toolbar MainAppToolbar
 		ButtonStyle = 2
 		Icon = 2081736703
 	End
+	Begin ToolbarButton ArcadeCabinetToolItem
+		Caption = "Arcade"
+		Tooltip = ""
+		ButtonStyle = 2
+		Icon = 972337151
+	End
 	Begin ToolbarButton SpaceToolItem
 		Caption = "Untitled"
 		Tooltip = ""
