@@ -24,7 +24,7 @@ Begin ContainerControl IntCodeComputerContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   408
+   Width           =   600
    Begin Label MemoryLabel
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -58,7 +58,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Underline       =   False
       Value           =   "Memory:"
       Visible         =   True
-      Width           =   261
+      Width           =   453
    End
    Begin Listbox MemoryListbox
       AllowAutoDeactivate=   True
@@ -95,7 +95,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       RequiresSelection=   False
       RowSelectionType=   "0"
@@ -108,7 +108,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   368
+      Width           =   152
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -150,7 +150,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Height          =   16
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   372
+      Left            =   564
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -180,7 +180,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   272
+      Left            =   464
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -239,7 +239,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   256
+      Width           =   448
    End
    Begin Label DesiredOutputLabel
       AllowAutoDeactivate=   True
@@ -277,7 +277,6 @@ Begin ContainerControl IntCodeComputerContainerControl
       Width           =   100
    End
    Begin Thread BackgroundThread
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Priority        =   5
@@ -331,7 +330,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   368
+      Width           =   560
    End
    Begin PushButton StartAndResetPushButton
       AllowAutoDeactivate=   True
@@ -379,7 +378,7 @@ Begin ContainerControl IntCodeComputerContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   293
+      Left            =   485
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -397,6 +396,58 @@ Begin ContainerControl IntCodeComputerContainerControl
       Visible         =   True
       Width           =   95
    End
+   Begin Listbox DisassembleListbox
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
+      AllowFocusRing  =   True
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
+      Bold            =   False
+      ColumnCount     =   6
+      ColumnWidths    =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      GridLinesHorizontalStyle=   "0"
+      GridLinesVerticalStyle=   "0"
+      HasBorder       =   True
+      HasHeader       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      HeadingIndex    =   -1
+      Height          =   154
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   "Address	Code	Instruction	Noun	Verb	Address"
+      Italic          =   False
+      Left            =   184
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      RequiresSelection=   False
+      RowSelectionType=   "0"
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   53
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   396
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
 End
 #tag EndWindow
 
@@ -409,6 +460,128 @@ End
 		  Result.Memory = FromMemory
 		  Return Result
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Disassemble()
+		  Var ModeSymbols() As String = Array("p", "d", "r", "", "", "", "", "", "", "")
+		  
+		  Var PreviousSelectedAddress As Integer = -1
+		  If DisassembleListbox.SelectedRowCount = 1 Then
+		    PreviousSelectedAddress = DisassembleListbox.CellValueAt(DisassembleListbox.SelectedRowIndex, 0).ToInteger
+		  End If
+		  
+		  DisassembleListbox.RemoveAllRows
+		  
+		  Var Address As Integer
+		  While Address < Memory.LastRowIndex
+		    Var OriginAddress As Integer = Address
+		    Var Noun, Verb, Output As Integer
+		    Var NounMode, VerbMode, OutputMode As String
+		    Var NounStr, VerbStr, OutputStr As String
+		    Var Instruction As String
+		    Var Help As String = ""
+		    
+		    Var Code As String = Memory(Address).ToString
+		    While Code.Length < 5
+		      Code = "0" + Code
+		    Wend
+		    
+		    OutputMode = ModeSymbols(Code.Left(1).ToInteger)
+		    VerbMode = ModeSymbols(Code.Left(2).Right(1).ToInteger)
+		    NounMode = ModeSymbols(Code.Left(3).Right(1).ToInteger)
+		    
+		    Select Case Code.Right(2).ToInteger
+		    Case 1
+		      Instruction = "SUM"
+		      Help = "Sum two numbers"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Verb = Address + 2
+		      VerbStr = VerbMode + Verb.ToString
+		      Output = Address + 3
+		      OutputStr = OutputMode + Output.ToString
+		      Address = Address + 4
+		    Case 2
+		      Instruction = "MUL"
+		      Help = "Multiply two numbers"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Verb = Address + 2
+		      VerbStr = VerbMode + Verb.ToString
+		      Output = Address + 3
+		      OutputStr = OutputMode + Output.ToString
+		      Address = Address + 4
+		    Case 3
+		      Instruction = "INP"
+		      Help = "Input required"
+		      Output = Address + 1
+		      OutputStr = OutputMode + Output.ToString
+		      Address = Address + 2
+		    Case 4
+		      Instruction = "OUT"
+		      Help = "Output"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Address = Address + 2
+		    Case 5
+		      Instruction = "JMT"
+		      Help = "Jump if noun is not zero"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Verb = Address + 2
+		      VerbStr = VerbMode + Verb.ToString
+		      Address = Address + 3
+		    Case 6
+		      Instruction = "JMF"
+		      Help = "Jump if noun is zero"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Verb = Address + 2
+		      VerbStr = VerbMode + Verb.ToString
+		      Address = Address + 3
+		    Case 7
+		      Instruction = "LES"
+		      Help = "Check if noun is less than verb"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Verb = Address + 2
+		      VerbStr = VerbMode + Verb.ToString
+		      Output = Address + 3
+		      OutputStr = OutputMode + Output.ToString
+		      Address = Address + 4
+		    Case 8
+		      Instruction = "EQU"
+		      Help = "Check if noun is equals to verb"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Verb = Address + 2
+		      VerbStr = VerbMode + Verb.ToString
+		      Output = Address + 3
+		      OutputStr = OutputMode + Output.ToString
+		      Address = Address + 4
+		    Case 9
+		      Instruction = "REL"
+		      Help = "Modify the relative base"
+		      Noun = Address + 1
+		      NounStr = NounMode + Noun.ToString
+		      Address = Address + 2
+		    Case 99
+		      Instruction = "END"
+		      Help = "Terminate the program"
+		      Address = Address + 1
+		    Else
+		      Instruction = ""
+		      Address = Address + 1
+		    End Select
+		    
+		    DisassembleListbox.AddRow OriginAddress.ToString, Code, Instruction, NounStr, VerbStr, OutputStr
+		    DisassembleListbox.CellTooltipAt(DisassembleListbox.LastRowIndex, 2) = Help
+		    If OriginAddress = PreviousSelectedAddress Then
+		      DisassembleListbox.SelectedRowIndex = DisassembleListbox.LastRowIndex
+		    End If
+		  Wend
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -494,6 +667,7 @@ End
 		  
 		  StartPushButton.Enabled = Memory.Count > 0
 		  StartAndResetPushButton.Enabled = Memory.Count > 0
+		  Disassemble
 		End Sub
 	#tag EndMethod
 
@@ -555,6 +729,7 @@ End
 	#tag Event
 		Sub CellAction(row As Integer, column As Integer)
 		  Memory(row) = Me.CellValueAt(row, column).Val
+		  Disassemble
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -608,6 +783,20 @@ End
 	#tag Event
 		Sub Action()
 		  OutputTextArea.Value = ""
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events DisassembleListbox
+	#tag Event
+		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
+		  g.DrawingColor = If(row Mod 2 = 0, Palette.CellAlternateBackground, Color.White)
+		  g.FillRectangle 0, 0, g.Width, g.Height
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Var Address As Integer = Me.CellValueAt(Me.SelectedRowIndex, 0).ToInteger
+		  MemoryListbox.SelectedRowIndex = Address
 		End Sub
 	#tag EndEvent
 #tag EndEvents
