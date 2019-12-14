@@ -34,7 +34,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "0"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -52,7 +52,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "1"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -235,7 +235,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "7"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -253,7 +253,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "8"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -271,7 +271,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "9"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -392,7 +392,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "13"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True
@@ -410,7 +410,7 @@ Begin ContainerControl ThrustersContainerControl
       Scope           =   0
       TabIndex        =   "14"
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Thickness       =   1.0
       Transparent     =   False
       Visible         =   True

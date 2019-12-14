@@ -50,43 +50,13 @@ Begin Window MainWindow
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   "True"
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   11
+      Value           =   0
       Visible         =   True
       Width           =   600
-      Begin FuelCalculatorContainerControl FuelCalculator
-         AllowAutoDeactivate=   True
-         AllowFocus      =   False
-         AllowFocusRing  =   False
-         AllowTabs       =   True
-         Backdrop        =   0
-         BackgroundColor =   &cFFFFFF00
-         DoubleBuffer    =   False
-         Enabled         =   True
-         EraseBackground =   True
-         HasBackgroundColor=   False
-         Height          =   400
-         Index           =   -2147483648
-         InitialParent   =   "AppPagePanel"
-         Left            =   0
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   0
-         TabPanelIndex   =   1
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   0
-         Transparent     =   True
-         Visible         =   True
-         Width           =   600
-      End
       Begin IntCodeComputerContainerControl Computer
          AllowAutoDeactivate=   True
          AllowFocus      =   False
@@ -433,6 +403,99 @@ Begin Window MainWindow
          Transparent     =   True
          Visible         =   True
          Width           =   600
+      End
+      Begin TabPanel FuelTabPanel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   360
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Italic          =   False
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Panels          =   ""
+         Scope           =   0
+         SmallTabs       =   False
+         TabDefinition   =   "Calculator\rNanofactory Fuel Refinery"
+         TabIndex        =   0
+         TabPanelIndex   =   1
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Value           =   0
+         Visible         =   True
+         Width           =   560
+         Begin FuelCalculatorContainerControl FuelCalculatorContainerControl1
+            AllowAutoDeactivate=   True
+            AllowFocus      =   False
+            AllowFocusRing  =   False
+            AllowTabs       =   True
+            Backdrop        =   0
+            BackgroundColor =   &cFFFFFF00
+            DoubleBuffer    =   False
+            Enabled         =   True
+            EraseBackground =   True
+            HasBackgroundColor=   False
+            Height          =   333
+            Index           =   -2147483648
+            InitialParent   =   "FuelTabPanel"
+            Left            =   20
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   0
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   47
+            Transparent     =   True
+            Visible         =   True
+            Width           =   560
+         End
+         Begin NanofactoryRefineryContainerControl NanofactoryRefineryContainerControl1
+            AllowAutoDeactivate=   True
+            AllowFocus      =   False
+            AllowFocusRing  =   False
+            AllowTabs       =   True
+            Backdrop        =   0
+            BackgroundColor =   &cFFFFFF00
+            DoubleBuffer    =   False
+            Enabled         =   True
+            EraseBackground =   True
+            Firmware        =   ""
+            HasBackgroundColor=   False
+            Height          =   333
+            Index           =   -2147483648
+            InitialParent   =   "FuelTabPanel"
+            Left            =   20
+            LockBottom      =   False
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   False
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   0
+            TabPanelIndex   =   2
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   47
+            Transparent     =   True
+            Visible         =   True
+            Width           =   560
+         End
       End
    End
 End
