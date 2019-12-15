@@ -164,7 +164,13 @@ Inherits IntCodeComputer
 			Group="Behavior"
 			InitialValue="Directions.North"
 			Type="Directions"
-			EditorType=""
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - North"
+				"1 - South"
+				"2 - West"
+				"3 - East"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

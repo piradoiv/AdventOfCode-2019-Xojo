@@ -83,6 +83,41 @@ Begin ContainerControl RepairDroidContainerControl
          Visible         =   True
          Width           =   112
       End
+      Begin Label BestSolutionLabel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "WorldCanvas"
+         Italic          =   False
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   False
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextAlignment   =   "3"
+         TextColor       =   &cFFFFFF00
+         Tooltip         =   ""
+         Top             =   272
+         Transparent     =   False
+         Underline       =   False
+         Value           =   ""
+         Visible         =   True
+         Width           =   260
+      End
    End
    Begin RepairDroidComputer RepairDroid
       Heading         =   "Directions.North"
@@ -110,18 +145,18 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub CleanBestPathPosition(Position As Point, Heading As RepairDroidComputer.Directions)
+		Sub CleanBestPathPosition(Position As Point, Heading As RepairDroidComputer.Directions, Path As Dictionary)
 		  Var North, South, East, West As Point
 		  North = New Point(Position.X, Position.Y - 1)
 		  South = New Point(Position.X, Position.Y + 1)
 		  West = New Point(Position.X - 1, Position.Y)
 		  East = New Point(Position.X + 1, Position.Y)
 		  
-		  If BestPath.HasKey(GetKeyForPosition(Position)) Then BestPath.Remove(GetKeyForPosition(Position))
-		  If BestPath.HasKey(GetKeyForPosition(North)) And Heading <> RepairDroidComputer.Directions.North Then BestPath.Remove(GetKeyForPosition(North))
-		  If BestPath.HasKey(GetKeyForPosition(South)) And Heading <> RepairDroidComputer.Directions.South Then BestPath.Remove(GetKeyForPosition(South))
-		  If BestPath.HasKey(GetKeyForPosition(West)) And Heading <> RepairDroidComputer.Directions.West Then BestPath.Remove(GetKeyForPosition(West))
-		  If BestPath.HasKey(GetKeyForPosition(East)) And Heading <> RepairDroidComputer.Directions.East Then BestPath.Remove(GetKeyForPosition(East))
+		  If Path.HasKey(GetKeyForPosition(Position)) Then Path.Remove(GetKeyForPosition(Position))
+		  If Path.HasKey(GetKeyForPosition(North)) And Heading <> RepairDroidComputer.Directions.North Then Path.Remove(GetKeyForPosition(North))
+		  If Path.HasKey(GetKeyForPosition(South)) And Heading <> RepairDroidComputer.Directions.South Then Path.Remove(GetKeyForPosition(South))
+		  If Path.HasKey(GetKeyForPosition(West)) And Heading <> RepairDroidComputer.Directions.West Then Path.Remove(GetKeyForPosition(West))
+		  If Path.HasKey(GetKeyForPosition(East)) And Heading <> RepairDroidComputer.Directions.East Then Path.Remove(GetKeyForPosition(East))
 		End Sub
 	#tag EndMethod
 
@@ -179,18 +214,36 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ResetWorld()
-		  Steps = 0
+		  AlreadyFoundOxygen = False
 		  DroidPosition = New Point
 		  World = New Dictionary
-		  VisitedBlocks = New Dictionary
-		  BestPath = New Dictionary
-		  VisitedBlocks.Value(GetKeyForPosition(DroidPosition)) = True
+		  World.Value("0,0") = New WorldTile(New Point, WorldTile.Types.Nothing)
+		  BestPathRight = New Dictionary
+		  BestPathRight.Value(GetKeyForPosition(DroidPosition)) = True
+		  BestPathLeft = New Dictionary
+		  BestPathLeft.Value(GetKeyForPosition(DroidPosition)) = True
+		  Winner = BestPathRight
+		  
+		  TopLeft = New Point
+		  BottomRight = New Point
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
-		BestPath As Dictionary
+		AlreadyFoundOxygen As Boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		BestPathLeft As Dictionary
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		BestPathRight As Dictionary
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		BottomRight As Point
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -202,11 +255,15 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Steps As Integer
+		TopLeft As Point
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		VisitedBlocks As Dictionary
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Winner As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -219,9 +276,14 @@ End
 #tag Events WorldCanvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  Const PixelSize = 12
-		  Var OffsetX As Double = 24
-		  Var OffsetY As Double = 12
+		  Var GridWidth As Integer = Abs(TopLeft.X) + BottomRight.X
+		  Var GridHeight As Integer = Abs(TopLeft.Y) + BottomRight.Y
+		  Var MaxPixelWidth As Double = (g.Width - 10) / GridWidth
+		  Var MaxPixelHeight As Double = (g.Height - 10) / GridHeight
+		  
+		  Var PixelSize As Double = Min(MaxPixelWidth, MaxPixelHeight)
+		  Var OffsetX As Double = GridWidth - BottomRight.X
+		  Var OffsetY As Double = GridHeight - BottomRight.Y
 		  
 		  g.DrawingColor = Color.Black
 		  g.FillRectangle 0, 0, g.Width, g.Height
@@ -238,8 +300,8 @@ End
 		      Sprite = blockGrey
 		    End Select
 		    
-		    If BestPath.HasKey(GetKeyForPosition(Tile.Position)) And Tile.Type <> WorldTile.Types.OxygenSystem Then
-		      Sprite = blockGreen
+		    If Winner.HasKey(GetKeyForPosition(Tile.Position)) And Tile.Type <> WorldTile.Types.OxygenSystem Then
+		      'Sprite = blockGreen
 		    End If
 		    
 		    g.DrawPicture Sprite, (OffsetX + Tile.Position.X) * PixelSize, (OffsetY + Tile.Position.Y) * PixelSize, _
@@ -276,46 +338,55 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Report(Moved As Boolean, HitWall As Boolean, FoundOxygen As Boolean)
-		  Var NextPosition As New Point(DroidPosition.X, DroidPosition.Y)
+		  Var BlockType As WorldTile.Types = WorldTile.Types.Nothing
+		  Var NewPosition As New Point(DroidPosition.X, DroidPosition.Y)
 		  Select Case LastMovement
 		  Case RepairDroidComputer.Directions.North
-		    NextPosition.Y = NextPosition.Y - 1
+		    NewPosition.Y = NewPosition.Y - 1
 		  Case RepairDroidComputer.Directions.South
-		    NextPosition.Y = NextPosition.Y + 1
+		    NewPosition.Y = NewPosition.Y + 1
 		  Case RepairDroidComputer.Directions.West
-		    NextPosition.X = NextPosition.X - 1
+		    NewPosition.X = NewPosition.X - 1
 		  Case RepairDroidComputer.Directions.East
-		    NextPosition.X = NextPosition.X + 1
+		    NewPosition.X = NewPosition.X + 1
 		  End Select
+		  
+		  TopLeft.X = Min(TopLeft.X, NewPosition.X)
+		  TopLeft.Y = Min(TopLeft.Y, NewPosition.Y)
+		  BottomRight.X = Max(BottomRight.X, NewPosition.X)
+		  BottomRight.Y = Max(BottomRight.Y, NewPosition.Y)
+		  Var CurrentPath As Dictionary = If(AlreadyFoundOxygen, BestPathLeft, BestPathRight)
 		  
 		  If Moved Then
 		    Var Key As String = GetKeyForPosition(DroidPosition)
-		    If BestPath.HasKey(Key) Then
-		      BestPath.Remove(Key)
+		    If CurrentPath.HasKey(Key) And Key <> "0,0" Then
+		      CleanBestPathPosition(DroidPosition, Me.Heading, CurrentPath)
 		    Else
-		      BestPath.Value(Key) = True
+		      CurrentPath.Value(Key) = True
 		    End If
 		    
-		    DroidPosition = NextPosition
+		    DroidPosition = NewPosition
+		    If Key = "0,0" And AlreadyFoundOxygen Then
+		      Me.Stop
+		      Winner = BestPathRight
+		      If BestPathLeft.KeyCount < BestPathRight.KeyCount Then Winner = BestPathLeft
+		    End If
+		    
+		    BestSolutionLabel.Value = "Best solution: " + Winner.KeyCount.ToString + " steps"
 		  End If
-		  
-		  Var BlockType As WorldTile.Types = WorldTile.Types.Nothing
 		  
 		  If HitWall Then
 		    BlockType = WorldTile.Types.Wall
-		    RepairDroid.Heading = GetLeftHandBasedOnHeading(RepairDroid.Heading)
-		    RepairDroid.Heading = GetLeftHandBasedOnHeading(RepairDroid.Heading)
+		    Me.Heading = GetLeftHandBasedOnHeading(Me.Heading)
+		    Me.Heading = GetLeftHandBasedOnHeading(Me.Heading)
 		  End If
 		  
 		  If FoundOxygen Then
 		    BlockType = WorldTile.Types.OxygenSystem
-		    MessageDialog.Show("Steps to oxygen system: " + Steps.ToString)
-		    MessageDialog.Show("Steps in best path: " + BestPath.KeyCount.ToString)
-		    Me.Stop
+		    AlreadyFoundOxygen = True
 		  End If
 		  
-		  World.Value(GetKeyForPosition(NextPosition)) = New WorldTile(NextPosition, BlockType)
-		  
+		  World.Value(GetKeyForPosition(NewPosition)) = New WorldTile(NewPosition, BlockType)
 		  WorldCanvas.Invalidate
 		End Sub
 	#tag EndEvent
@@ -552,11 +623,11 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Steps"
+		Name="AlreadyFoundOxygen"
 		Visible=false
 		Group="Behavior"
-		InitialValue=""
-		Type="Integer"
+		InitialValue="False"
+		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
