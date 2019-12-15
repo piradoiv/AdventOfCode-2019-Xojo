@@ -88,7 +88,6 @@ Begin ContainerControl ArcadeCabinetContainerControl
       End
    End
    Begin IntCodeComputer Computer
-      Enabled         =   True
       Index           =   -2147483648
       InstructionPointer=   0
       LockedInPosition=   False
@@ -220,8 +219,8 @@ End
 		  
 		  For Each Entry As DictionaryEntry In Tiles
 		    Var Tile As GameTile = Entry.Value
-		    g.DrawingColor = GetDrawingColorForTile(Tile)
-		    g.FillRectangle Tile.Position.X * PixelSize, Tile.Position.Y * PixelSize, PixelSize, PixelSize
+		    If Tile.Type = GameTile.Types.Empty Then Continue
+		    g.DrawPicture Tile.Tile, Tile.Position.X * PixelSize, Tile.Position.Y * PixelSize, PixelSize, PixelSize, 0, 0, Tile.Tile.Width, Tile.Tile.Height
 		  Next
 		  
 		  ScoreLabel.Value = "Score: " + Score.ToString

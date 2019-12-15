@@ -25,13 +25,45 @@ Protected Class GameTile
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h21
+		Private mType As Types
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		Position As Point
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Type As Types
+		Tile As Picture
 	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mType
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mType = value
+			  Select Case value
+			  Case Types.Ball
+			    Tile = ballBlue
+			  Case Types.Block
+			    Var BlockTiles() As Picture = Array(blockBlue, blockGreen, blockPurple, blockRed, blockYellow)
+			    BlockTiles.Shuffle
+			    Tile = BlockTiles(0)
+			  Case Types.HorizontalPaddle
+			    Tile = paddleBlue
+			  Case Types.Wall
+			    Tile = blockGrey
+			  Else
+			    Tile = Nil
+			  End Select
+			End Set
+		#tag EndSetter
+		Type As Types
+	#tag EndComputedProperty
 
 
 	#tag Enum, Name = Types, Type = Integer, Flags = &h0
@@ -85,11 +117,11 @@ Protected Class GameTile
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Position"
+			Name="mType"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Types"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

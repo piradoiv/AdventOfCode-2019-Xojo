@@ -465,10 +465,10 @@ Begin Window MainWindow
          InitialParent   =   "AppPagePanel"
          Italic          =   False
          Left            =   20
-         LockBottom      =   False
+         LockBottom      =   True
          LockedInPosition=   False
          LockLeft        =   True
-         LockRight       =   False
+         LockRight       =   True
          LockTop         =   True
          Panels          =   ""
          Scope           =   0
@@ -503,6 +503,7 @@ Begin Window MainWindow
             LockLeft        =   True
             LockRight       =   True
             LockTop         =   True
+            Program         =   ""
             Scope           =   0
             TabIndex        =   0
             TabPanelIndex   =   1
