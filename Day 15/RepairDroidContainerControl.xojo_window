@@ -85,6 +85,7 @@ Begin ContainerControl RepairDroidContainerControl
       End
    End
    Begin RepairDroidComputer RepairDroid
+      Heading         =   "Directions.North"
       Index           =   -2147483648
       InstructionPointer=   0
       LockedInPosition=   False
@@ -109,13 +110,88 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub ResetWorld()
-		  DroidPosition = New Point
-		  World = New Dictionary
-		  VisitedBlocks = New Dictionary
+		Sub CleanBestPathPosition(Position As Point, Heading As RepairDroidComputer.Directions)
+		  Var North, South, East, West As Point
+		  North = New Point(Position.X, Position.Y - 1)
+		  South = New Point(Position.X, Position.Y + 1)
+		  West = New Point(Position.X - 1, Position.Y)
+		  East = New Point(Position.X + 1, Position.Y)
+		  
+		  If BestPath.HasKey(GetKeyForPosition(Position)) Then BestPath.Remove(GetKeyForPosition(Position))
+		  If BestPath.HasKey(GetKeyForPosition(North)) And Heading <> RepairDroidComputer.Directions.North Then BestPath.Remove(GetKeyForPosition(North))
+		  If BestPath.HasKey(GetKeyForPosition(South)) And Heading <> RepairDroidComputer.Directions.South Then BestPath.Remove(GetKeyForPosition(South))
+		  If BestPath.HasKey(GetKeyForPosition(West)) And Heading <> RepairDroidComputer.Directions.West Then BestPath.Remove(GetKeyForPosition(West))
+		  If BestPath.HasKey(GetKeyForPosition(East)) And Heading <> RepairDroidComputer.Directions.East Then BestPath.Remove(GetKeyForPosition(East))
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function GetKeyForPosition(Position As Point) As String
+		  Var X, Y As Integer
+		  X = Position.X
+		  Y = Position.Y
+		  Return X.ToString + "," + Y.ToString
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetLeftHandBasedOnHeading(Heading As RepairDroidComputer.Directions) As RepairDroidComputer.Directions
+		  Var Result As RepairDroidComputer.Directions
+		  Select Case RepairDroid.Heading
+		  Case RepairDroidComputer.Directions.North
+		    Result = RepairDroidComputer.Directions.West
+		  Case RepairDroidComputer.Directions.South
+		    Result = RepairDroidComputer.Directions.East
+		  Case RepairDroidComputer.Directions.West
+		    Result = RepairDroidComputer.Directions.South
+		  Case RepairDroidComputer.Directions.East
+		    Result = RepairDroidComputer.Directions.North
+		  End Select
+		  
+		  Return Result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetOppositeHeading(Heading As RepairDroidComputer.Directions) As RepairDroidComputer.Directions
+		  Var Result As RepairDroidComputer.Directions = GetLeftHandBasedOnHeading(Heading)
+		  Return GetLeftHandBasedOnHeading(Result)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetRightHandBasedOnHeading(Heading As RepairDroidComputer.Directions) As RepairDroidComputer.Directions
+		  Var Result As RepairDroidComputer.Directions
+		  Select Case RepairDroid.Heading
+		  Case RepairDroidComputer.Directions.North
+		    Result = RepairDroidComputer.Directions.East
+		  Case RepairDroidComputer.Directions.South
+		    Result = RepairDroidComputer.Directions.West
+		  Case RepairDroidComputer.Directions.West
+		    Result = RepairDroidComputer.Directions.North
+		  Case RepairDroidComputer.Directions.East
+		    Result = RepairDroidComputer.Directions.South
+		  End Select
+		  
+		  Return Result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ResetWorld()
+		  Steps = 0
+		  DroidPosition = New Point
+		  World = New Dictionary
+		  VisitedBlocks = New Dictionary
+		  BestPath = New Dictionary
+		  VisitedBlocks.Value(GetKeyForPosition(DroidPosition)) = True
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		BestPath As Dictionary
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		DroidPosition As Point
@@ -123,6 +199,10 @@ End
 
 	#tag Property, Flags = &h0
 		LastMovement As RepairDroidComputer.Directions
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Steps As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -158,6 +238,10 @@ End
 		      Sprite = blockGrey
 		    End Select
 		    
+		    If BestPath.HasKey(GetKeyForPosition(Tile.Position)) And Tile.Type <> WorldTile.Types.OxygenSystem Then
+		      Sprite = blockGreen
+		    End If
+		    
 		    g.DrawPicture Sprite, (OffsetX + Tile.Position.X) * PixelSize, (OffsetY + Tile.Position.Y) * PixelSize, _
 		    PixelSize, PixelSize, 0, 0, Sprite.Width, Sprite.Height
 		  Next
@@ -185,11 +269,8 @@ End
 #tag Events RepairDroid
 	#tag Event
 		Sub InputRequired()
-		  Var Movements() As RepairDroidComputer.Directions = Array(RepairDroidComputer.Directions.North, _
-		  RepairDroidComputer.Directions.South, RepairDroidComputer.Directions.West, RepairDroidComputer.Directions.East)
-		  
-		  Movements.Shuffle
-		  LastMovement = Movements(0)
+		  RepairDroid.Heading = GetRightHandBasedOnHeading(RepairDroid.Heading)
+		  LastMovement = RepairDroid.Heading
 		  Me.MoveTo LastMovement
 		End Sub
 	#tag EndEvent
@@ -207,12 +288,14 @@ End
 		    NextPosition.X = NextPosition.X + 1
 		  End Select
 		  
-		  Var X, Y As Integer
-		  X = NextPosition.X
-		  Y = NextPosition.Y
-		  Var Key As String = X.ToString + "," + Y.ToString
-		  
 		  If Moved Then
+		    Var Key As String = GetKeyForPosition(DroidPosition)
+		    If BestPath.HasKey(Key) Then
+		      BestPath.Remove(Key)
+		    Else
+		      BestPath.Value(Key) = True
+		    End If
+		    
 		    DroidPosition = NextPosition
 		  End If
 		  
@@ -220,13 +303,18 @@ End
 		  
 		  If HitWall Then
 		    BlockType = WorldTile.Types.Wall
+		    RepairDroid.Heading = GetLeftHandBasedOnHeading(RepairDroid.Heading)
+		    RepairDroid.Heading = GetLeftHandBasedOnHeading(RepairDroid.Heading)
 		  End If
 		  
 		  If FoundOxygen Then
 		    BlockType = WorldTile.Types.OxygenSystem
+		    MessageDialog.Show("Steps to oxygen system: " + Steps.ToString)
+		    MessageDialog.Show("Steps in best path: " + BestPath.KeyCount.ToString)
+		    Me.Stop
 		  End If
 		  
-		  World.Value(Key) = New WorldTile(NextPosition, BlockType)
+		  World.Value(GetKeyForPosition(NextPosition)) = New WorldTile(NextPosition, BlockType)
 		  
 		  WorldCanvas.Invalidate
 		End Sub
@@ -462,5 +550,13 @@ End
 			"2 - West"
 			"3 - East"
 		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Steps"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

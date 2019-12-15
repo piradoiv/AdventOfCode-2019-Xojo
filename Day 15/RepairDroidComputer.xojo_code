@@ -43,7 +43,7 @@ Inherits IntCodeComputer
 
 
 	#tag Property, Flags = &h0
-		Heading As Integer = Directions.North
+		Heading As Directions = Directions.North
 	#tag EndProperty
 
 
@@ -156,6 +156,14 @@ Inherits IntCodeComputer
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Heading"
+			Visible=false
+			Group="Behavior"
+			InitialValue="Directions.North"
+			Type="Directions"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

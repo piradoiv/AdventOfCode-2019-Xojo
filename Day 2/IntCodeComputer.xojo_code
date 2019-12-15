@@ -42,6 +42,7 @@ Protected Class IntCodeComputer
 		  If Status = Statuses.Idle Or Status = Statuses.Terminated Then Status = Statuses.Running
 		  
 		  Do
+		    If Status = Statuses.Terminated Then Return
 		    OpCode = Memory(InstructionPointer)
 		    Var IntCode As IntCode = IntCode.FromCode(OpCode)
 		    IntCode.Memory = Memory
@@ -132,6 +133,12 @@ Protected Class IntCodeComputer
 		  Loop Until Status = Statuses.Terminated
 		  
 		  Finished
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Stop()
+		  Status = Statuses.Terminated
 		End Sub
 	#tag EndMethod
 
