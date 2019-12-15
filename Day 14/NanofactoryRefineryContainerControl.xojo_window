@@ -211,6 +211,7 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       Width           =   366
    End
    Begin NanofactoryRefinery Refinery
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Scope           =   0

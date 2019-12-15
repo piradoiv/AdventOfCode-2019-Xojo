@@ -213,8 +213,68 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub GrowOxygen()
+		  'Minutes = Minutes + 1
+		  Var NextRoundOfTiles() As Point
+		  For Each CurrentTile As Point In LatestOxygenedTiles
+		    Var TilesAround() As Point
+		    TilesAround.AddRow(New Point(CurrentTile.X, CurrentTile.Y - 1))
+		    TilesAround.AddRow(New Point(CurrentTile.X, CurrentTile.Y + 1))
+		    TilesAround.AddRow(New Point(CurrentTile.X - 1, CurrentTile.Y))
+		    TilesAround.AddRow(New Point(CurrentTile.X + 1, CurrentTile.Y))
+		    
+		    For Each Position As Point In TilesAround
+		      Var Key As String = GetKeyForPosition(Position)
+		      Var Tile As WorldTile = World.Value(Key)
+		      If Tile.Type = WorldTile.Types.Nothing Then
+		        Tile.Type = WorldTile.Types.AlreadyOxygened
+		        NextRoundOfTiles.AddRow Position
+		      End If
+		    Next
+		  Next
+		  LatestOxygenedTiles = NextRoundOfTiles
+		  WorldCanvas.Invalidate
+		  WorldCanvas.Refresh
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub OpenOxygen()
+		  LatestOxygenedTiles.RemoveAllRows
+		  LatestOxygenedTiles.AddRow(New Point(OxygenSystemPosition.X, OxygenSystemPosition.Y))
+		  
+		  Var Minutes As Integer = -1
+		  Do
+		    Minutes = Minutes + 1
+		    Var NextRoundOfTiles() As Point
+		    For Each CurrentTile As Point In LatestOxygenedTiles
+		      Var TilesAround() As Point
+		      TilesAround.AddRow(New Point(CurrentTile.X, CurrentTile.Y - 1))
+		      TilesAround.AddRow(New Point(CurrentTile.X, CurrentTile.Y + 1))
+		      TilesAround.AddRow(New Point(CurrentTile.X - 1, CurrentTile.Y))
+		      TilesAround.AddRow(New Point(CurrentTile.X + 1, CurrentTile.Y))
+		      
+		      For Each Position As Point In TilesAround
+		        Var Key As String = GetKeyForPosition(Position)
+		        Var Tile As WorldTile = World.Value(Key)
+		        If Tile.Type = WorldTile.Types.Nothing Then
+		          Tile.Type = WorldTile.Types.AlreadyOxygened
+		          NextRoundOfTiles.AddRow Position
+		        End If
+		      Next
+		    Next
+		    LatestOxygenedTiles = NextRoundOfTiles
+		    WorldCanvas.Refresh
+		  Loop Until LatestOxygenedTiles.Count = 0
+		  
+		  MessageDialog.Show Minutes.ToString
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub ResetWorld()
 		  AlreadyFoundOxygen = False
+		  OxygenSystemPosition = Nil
 		  DroidPosition = New Point
 		  World = New Dictionary
 		  World.Value("0,0") = New WorldTile(New Point, WorldTile.Types.Nothing)
@@ -252,6 +312,14 @@ End
 
 	#tag Property, Flags = &h0
 		LastMovement As RepairDroidComputer.Directions
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		LatestOxygenedTiles() As Point
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		OxygenSystemPosition As Point
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -296,6 +364,8 @@ End
 		      Sprite = ballBlue
 		    Case WorldTile.Types.Wall
 		      Sprite = blockRed
+		    Case WorldTile.Types.AlreadyOxygened
+		      Sprite = blockBlue
 		    Case WorldTile.Types.Nothing
 		      Sprite = blockGrey
 		    End Select
@@ -370,6 +440,7 @@ End
 		      Me.Stop
 		      Winner = BestPathRight
 		      If BestPathLeft.KeyCount < BestPathRight.KeyCount Then Winner = BestPathLeft
+		      OpenOxygen
 		    End If
 		    
 		    BestSolutionLabel.Value = "Best solution: " + Winner.KeyCount.ToString + " steps"
@@ -384,6 +455,7 @@ End
 		  If FoundOxygen Then
 		    BlockType = WorldTile.Types.OxygenSystem
 		    AlreadyFoundOxygen = True
+		    OxygenSystemPosition = New Point(NewPosition.X, NewPosition.Y)
 		  End If
 		  
 		  World.Value(GetKeyForPosition(NewPosition)) = New WorldTile(NewPosition, BlockType)

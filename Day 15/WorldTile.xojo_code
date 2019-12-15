@@ -20,7 +20,8 @@ Protected Class WorldTile
 	#tag Enum, Name = Types, Type = Integer, Flags = &h0
 		Nothing
 		  Wall
-		OxygenSystem
+		  OxygenSystem
+		AlreadyOxygened
 	#tag EndEnum
 
 
@@ -71,7 +72,12 @@ Protected Class WorldTile
 			Group="Behavior"
 			InitialValue=""
 			Type="Types"
-			EditorType=""
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Nothing"
+				"1 - Wall"
+				"2 - OxygenSystem"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

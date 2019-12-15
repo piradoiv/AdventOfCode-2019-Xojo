@@ -88,6 +88,7 @@ Begin ContainerControl ArcadeCabinetContainerControl
       End
    End
    Begin IntCodeComputer Computer
+      Enabled         =   True
       Index           =   -2147483648
       InstructionPointer=   0
       LockedInPosition=   False
