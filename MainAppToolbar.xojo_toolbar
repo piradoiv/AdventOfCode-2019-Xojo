@@ -48,11 +48,11 @@ Begin Toolbar MainAppToolbar
 		ButtonStyle = 2
 		Icon = 1155778559
 	End
-	Begin ToolbarButton HullToolItem
-		Caption = "Hull"
+	Begin ToolbarButton DroidslItem
+		Caption = "Droids"
 		Tooltip = ""
 		ButtonStyle = 2
-		Icon = 733003775
+		Icon = 1661927423
 	End
 	Begin ToolbarButton NBodyToolItem
 		Caption = "Simulation"

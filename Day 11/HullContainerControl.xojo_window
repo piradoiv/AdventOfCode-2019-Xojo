@@ -86,7 +86,6 @@ Begin ContainerControl HullContainerControl
    End
    Begin HullPaintingRobot Robot
       CurrentOutputType=   "OutputType.Paint"
-      Enabled         =   True
       Heading         =   "Headings.North"
       Index           =   -2147483648
       LockedInPosition=   False

@@ -53,7 +53,7 @@ Begin Window MainWindow
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
-      Value           =   0
+      Value           =   9
       Visible         =   True
       Width           =   600
       Begin IntCodeComputerContainerControl Computer
@@ -297,36 +297,6 @@ Begin Window MainWindow
          Visible         =   True
          Width           =   600
       End
-      Begin HullContainerControl HullContainerControl1
-         AllowAutoDeactivate=   True
-         AllowFocus      =   False
-         AllowFocusRing  =   False
-         AllowTabs       =   True
-         Backdrop        =   0
-         BackgroundColor =   &cFFFFFF00
-         DoubleBuffer    =   False
-         Enabled         =   True
-         EraseBackground =   True
-         HasBackgroundColor=   False
-         Height          =   400
-         InitialParent   =   "AppPagePanel"
-         Left            =   0
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         Program         =   ""
-         Scope           =   0
-         TabIndex        =   0
-         TabPanelIndex   =   10
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   0
-         Transparent     =   True
-         Visible         =   True
-         Width           =   600
-      End
       Begin NBodyContainerControl NBodyContainerControl1
          AllowAutoDeactivate=   True
          AllowFocus      =   False
@@ -483,6 +453,96 @@ Begin Window MainWindow
             Width           =   560
          End
       End
+      Begin TabPanel DroidsTabPanel
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   368
+         Index           =   -2147483648
+         InitialParent   =   "AppPagePanel"
+         Italic          =   False
+         Left            =   20
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Panels          =   ""
+         Scope           =   0
+         SmallTabs       =   False
+         TabDefinition   =   "Hull Painting\rRepair Droid"
+         TabIndex        =   0
+         TabPanelIndex   =   10
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   12
+         Transparent     =   False
+         Underline       =   False
+         Value           =   1
+         Visible         =   True
+         Width           =   560
+         Begin HullContainerControl HullPainting
+            AllowAutoDeactivate=   True
+            AllowFocus      =   False
+            AllowFocusRing  =   False
+            AllowTabs       =   True
+            Backdrop        =   0
+            BackgroundColor =   &cFFFFFF00
+            DoubleBuffer    =   False
+            Enabled         =   True
+            EraseBackground =   True
+            HasBackgroundColor=   False
+            Height          =   310
+            InitialParent   =   "DroidsTabPanel"
+            Left            =   40
+            LockBottom      =   True
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   True
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   0
+            TabPanelIndex   =   1
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   50
+            Transparent     =   True
+            Visible         =   True
+            Width           =   520
+         End
+         Begin RepairDroidContainerControl RepairDroidContainerControl1
+            AllowAutoDeactivate=   True
+            AllowFocus      =   False
+            AllowFocusRing  =   False
+            AllowTabs       =   True
+            Backdrop        =   0
+            BackgroundColor =   &cFFFFFF00
+            DoubleBuffer    =   False
+            Enabled         =   True
+            EraseBackground =   True
+            HasBackgroundColor=   False
+            Height          =   310
+            InitialParent   =   "DroidsTabPanel"
+            Left            =   40
+            LockBottom      =   True
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   True
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   0
+            TabPanelIndex   =   2
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   50
+            Transparent     =   True
+            Visible         =   True
+            Width           =   520
+         End
+      End
    End
 End
 #tag EndWindow
@@ -502,7 +562,7 @@ End
 		  Me.CommunicationsToolItem.Tag = 6
 		  Me.TestsToolItem.Tag = 7
 		  Me.MonitoringToolItem.Tag = 8
-		  Me.HullToolItem.Tag = 9
+		  Me.DroidslItem.Tag = 9
 		  Me.NBodyToolItem.Tag = 10
 		  Me.ArcadeCabinetToolItem.Tag = 11
 		  ToolbarButton(Me.FuelCalculatorToolItem).Pressed = True
