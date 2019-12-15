@@ -50,7 +50,6 @@ Begin Window MainWindow
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -69,7 +68,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -102,7 +100,6 @@ Begin Window MainWindow
          GridSize        =   4
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -133,7 +130,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -163,7 +159,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -194,7 +189,6 @@ Begin Window MainWindow
          HasBackgroundColor=   False
          Height          =   400
          HighestOutputSignal=   0
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -227,7 +221,6 @@ Begin Window MainWindow
          HasBackgroundColor=   False
          Height          =   400
          ImageStr        =   ""
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -257,7 +250,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -287,7 +279,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -318,7 +309,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -350,7 +340,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -384,7 +373,6 @@ Begin Window MainWindow
          GameCartdrige   =   ""
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -432,7 +420,7 @@ Begin Window MainWindow
          Top             =   20
          Transparent     =   False
          Underline       =   False
-         Value           =   0
+         Value           =   1
          Visible         =   True
          Width           =   560
          Begin FuelCalculatorContainerControl FuelCalculatorContainerControl1
@@ -447,7 +435,6 @@ Begin Window MainWindow
             EraseBackground =   True
             HasBackgroundColor=   False
             Height          =   333
-            Index           =   -2147483648
             InitialParent   =   "FuelTabPanel"
             Left            =   20
             LockBottom      =   False
@@ -478,7 +465,6 @@ Begin Window MainWindow
             Firmware        =   ""
             HasBackgroundColor=   False
             Height          =   333
-            Index           =   -2147483648
             InitialParent   =   "FuelTabPanel"
             Left            =   20
             LockBottom      =   False

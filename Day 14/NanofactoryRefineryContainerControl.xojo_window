@@ -164,9 +164,9 @@ Begin ContainerControl NanofactoryRefineryContainerControl
    End
    Begin TextArea BuildLogTextArea
       AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
-      AllowSpellChecking=   True
-      AllowStyledText =   True
+      AllowFocusRing  =   False
+      AllowSpellChecking=   False
+      AllowStyledText =   False
       AllowTabs       =   False
       BackgroundColor =   &cFFFFFF00
       Bold            =   False
@@ -210,65 +210,74 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       Visible         =   True
       Width           =   366
    End
+   Begin NanofactoryRefinery Refinery
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin PushButton PushButton1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Button"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   306
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   "0"
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   90
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h0
+		Function GetOre(WantedMaterial As Material) As Integer
+		  'Var Result = 0
+		  '
+		  'Var Got As New Dictionary
+		  'Var Need As New Dictionary
+		  'While Need.KeyCount > 0
+		  'For Each Entry As DictionaryEntry In Need
+		  'Var NeedMaterial As Material = Need.Key
+		  'Var Amount As Integer = Need.Value
+		  'If NeedMaterial.Name = "ORE" Then
+		  'Result = Result + Amount
+		  'Continue
+		  'End If
+		  '
+		  '
+		  'Next
+		  'Wend
+		  '
+		  'Return Result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub InitializeNanofactory()
-		  Var mOre As New Material("ORE", 1)
-		  Var mA As New Material("A", 2)
-		  mA.MinimumProduction = 2
-		  Var mB As New Material("B", 3)
-		  mB.MinimumProduction = 3
-		  Var mC As New Material("C", 5)
-		  mC.MinimumProduction = 5
-		  Var mAB As New Material("AB", 1)
-		  Var mBC As New Material("BC", 1)
-		  Var mCA As New Material("CA", 1)
-		  Var mFuel As New Material("FUEL", 1)
-		  
-		  mFuel.AddRequirement mAB, 2
-		  mFuel.AddRequirement mBC, 3
-		  mFuel.AddRequirement mCA, 4
-		  
-		  mAB.AddRequirement mA, 3
-		  mAB.AddRequirement mB, 4
-		  mBC.AddRequirement mB, 5
-		  mBC.AddRequirement mC, 7
-		  mCA.AddRequirement mC, 4
-		  mCA.AddRequirement mA, 1
-		  
-		  mA.AddRequirement mOre, 9
-		  mB.AddRequirement mOre, 8
-		  mC.AddRequirement mOre, 7
-		  
-		  Var OreRequired As Integer
-		  Var Inventory As New Dictionary
-		  Inventory.Value(mOre) = 0
-		  
-		  Var PendingRequirements As New Dictionary
-		  PendingRequirements.Value(mFuel) = 1
-		  
-		  While PendingRequirements.KeyCount > 0
-		    Var NextRequirementsRound As New Dictionary
-		    For Each Entry As DictionaryEntry In PendingRequirements
-		      Var CurrentMaterial As Material = Entry.Key
-		      For Each RequirementEntry As DictionaryEntry In CurrentMaterial.Requires
-		        Var RequirementRequirement As Material = RequirementEntry.Key
-		        If RequirementRequirement.Name = "ORE" Then
-		          OreRequired = OreRequired + Ceil(Entry.Value / CurrentMaterial.MinimumProduction) * RequirementEntry.Value
-		          Continue
-		        End If
-		        
-		        Var PreviousAmount As Integer = NextRequirementsRound.Lookup(RequirementRequirement, 0)
-		        NextRequirementsRound.Value(RequirementRequirement) = PreviousAmount + Entry.Value * RequirementEntry.Value
-		      Next
-		    Next
-		    PendingRequirements = NextRequirementsRound
-		  Wend
-		  
-		  MessageDialog.Show OreRequired.ToString
+		  Refinery.Initialize Firmware
 		End Sub
 	#tag EndMethod
 
@@ -291,6 +300,13 @@ End
 		  
 		  Firmware = d.Csv
 		  InitializeNanofactory
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  BuildLogTextArea.AddText Refinery.GetOreRequiredForMaterial("FUEL").ToString + EndOfLine
 		End Sub
 	#tag EndEvent
 #tag EndEvents

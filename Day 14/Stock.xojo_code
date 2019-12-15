@@ -1,24 +1,19 @@
 #tag Class
-Protected Class Material
+Protected Class Stock
 	#tag Method, Flags = &h0
-		Sub Constructor(Name As String, MinAmount As Integer)
-		  Self.Name = Name
-		  Self.MinAmount = MinAmount
-		  Requires = New Dictionary
+		Sub Constructor(Material As Material, Amount As Integer)
+		  Self.Material = Material
+		  Self.Amount = Amount
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
-		MinAmount As Integer = 1
+		Amount As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Name As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Requires As Dictionary
+		Material As Material
 	#tag EndProperty
 
 
@@ -64,7 +59,7 @@ Protected Class Material
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="MinAmount"
+			Name="Material"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
