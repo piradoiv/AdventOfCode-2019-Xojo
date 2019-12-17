@@ -1,54 +1,41 @@
 #tag Class
 Protected Class FlawedFrequencyTransmission
 	#tag Method, Flags = &h0
-		Sub CalculatePhase()
-		  Var NewInput As String = Input
-		  Var Characters() As String = Input.Split("")
-		  Var NewInputChars() As String = Input.Split("")
-		  
-		  For I As Integer = 0 To Characters.LastRowIndex
-		    Var CharResult As Integer
-		    Var SequenceForPosition() As Integer = PrepareSequenceForPosition(I)
-		    For Index As Integer = 0 To Characters.LastRowIndex
-		      Var SequenceIndex As Integer = (Index + 1) Mod SequenceForPosition.Count
-		      Var Noun As Integer = Characters(Index).ToInteger
-		      Var Verb As Integer = SequenceForPosition(SequenceIndex)
-		      CharResult = CharResult + Noun * Verb
-		    Next
-		    
-		    CharResult = Abs(CharResult)
-		    Var CharString As String = CharResult.ToString
-		    NewInputChars(I) = CharString.Right(1)
-		  Next
-		  
-		  NewInput = String.FromArray(NewInputChars, "")
-		  Input = NewInput
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub Constructor(Input As String)
 		  Self.Input = Input
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function PrepareSequenceForPosition(Position As Integer) As Integer()
-		  Var Result() As Integer
-		  For Each Current As Integer In Sequence
-		    For I As Integer = 0 To Position
-		      Result.AddRow Current
-		    Next
-		  Next
-		  
-		  Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub RunPhase(AmountOfPhases As Integer = 1)
-		  For I As Integer = 1 To AmountOfPhases
-		    CalculatePhase
+		  For Iteration As Integer = 1 To AmountOfPhases
+		    Var NewInput As String = Input
+		    Var Characters() As String = Input.Split("")
+		    Var NewInputChars() As String = Input.Split("")
+		    
+		    For I As Integer = 0 To Characters.LastRowIndex
+		      Var CharResult As Integer
+		      Var SequenceForPosition() As Integer
+		      For Each Current As Integer In Sequence
+		        For J As Integer = 0 To I
+		          SequenceForPosition.AddRow Current
+		        Next
+		      Next
+		      
+		      Var SequenceIndex, Noun, Verb As Integer
+		      For Index As Integer = 0 To Characters.LastRowIndex
+		        SequenceIndex = (Index + 1) Mod SequenceForPosition.Count
+		        Noun = Characters(Index).ToInteger
+		        Verb = SequenceForPosition(SequenceIndex)
+		        CharResult = CharResult + Noun * Verb
+		      Next
+		      
+		      CharResult = Abs(CharResult)
+		      NewInputChars(I) = CharResult.ToString.Right(1)
+		    Next
+		    
+		    NewInput = String.FromArray(NewInputChars, "")
+		    Input = NewInput
 		  Next
 		End Sub
 	#tag EndMethod
