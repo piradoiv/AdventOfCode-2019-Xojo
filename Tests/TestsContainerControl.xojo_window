@@ -122,6 +122,9 @@ End
 		    
 		    t = New MathTests
 		    t.RunTests
+		    
+		    t = New Day16Tests
+		    t.RunTests
 		  Catch E As RuntimeException
 		    TestsOutputTextArea.AddText E.Message + EndOfLine
 		  End Try
