@@ -122,7 +122,6 @@ Protected Class IntCodeComputer
 		    Case 99
 		      Status = Statuses.Terminated
 		      InstructionPointer = InstructionPointer + 1
-		      Finished
 		      
 		    Else
 		      Var E As New RuntimeException

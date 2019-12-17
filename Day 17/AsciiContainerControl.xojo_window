@@ -1,5 +1,5 @@
 #tag Window
-Begin ContainerControl NanofactoryRefineryContainerControl
+Begin ContainerControl AsciiContainerControl
    AllowAutoDeactivate=   True
    AllowFocus      =   False
    AllowFocusRing  =   False
@@ -10,7 +10,7 @@ Begin ContainerControl NanofactoryRefineryContainerControl
    Enabled         =   True
    EraseBackground =   True
    HasBackgroundColor=   False
-   Height          =   300
+   Height          =   286
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -24,82 +24,12 @@ Begin ContainerControl NanofactoryRefineryContainerControl
    Top             =   0
    Transparent     =   True
    Visible         =   True
-   Width           =   406
-   Begin Label AmplifierControllerLabel
-      AllowAutoDeactivate=   True
-      Bold            =   True
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   42.0
-      FontUnit        =   0
-      Height          =   58
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "2"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Nanofactory"
-      Visible         =   True
-      Width           =   406
-      Begin Label ThrustOMaticLabel
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "AmplifierControllerLabel"
-         Italic          =   False
-         Left            =   87
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextAlignment   =   "2"
-         TextColor       =   &c00000000
-         Tooltip         =   ""
-         Top             =   17
-         Transparent     =   False
-         Underline       =   False
-         Value           =   "Inter-Stellar Refinery Union"
-         Visible         =   True
-         Width           =   299
-      End
-   End
-   Begin PushButton UpgradeFirmwarePushButton
+   Width           =   448
+   Begin PushButton LoadProgramPushButton
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "Upgrade firmware"
+      Caption         =   "Load Program"
       Default         =   False
       Enabled         =   True
       FontName        =   "System"
@@ -109,63 +39,41 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   320
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       MacButtonStyle  =   "0"
       Scope           =   0
-      TabIndex        =   2
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   90
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   131
+      Width           =   108
    End
-   Begin Label NanofactoryLabel
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
+   Begin IntCodeComputer AsciiComputer
       Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
+      InstructionPointer=   0
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Multiline       =   False
+      Noun            =   0
+      OpCode          =   99
+      RelativeBase    =   0
+      ResultAddress   =   0
       Scope           =   0
-      Selectable      =   False
-      TabIndex        =   3
+      Status          =   "Statuses.Idle"
       TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   122
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Please update the firmware before using this tool."
-      Visible         =   True
-      Width           =   366
+      Verb            =   0
    End
-   Begin TextArea BuildLogTextArea
+   Begin TextArea AsciiTextArea
       AllowAutoDeactivate=   True
       AllowFocusRing  =   False
-      AllowSpellChecking=   False
+      AllowSpellChecking=   True
       AllowStyledText =   False
       AllowTabs       =   False
       BackgroundColor =   &cFFFFFF00
@@ -173,14 +81,14 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      FontName        =   "System"
+      FontName        =   "Consolas for Powerline"
       FontSize        =   0.0
       FontUnit        =   0
       Format          =   ""
       HasBorder       =   True
-      HasHorizontalScrollbar=   False
+      HasHorizontalScrollbar=   True
       HasVerticalScrollbar=   True
-      Height          =   126
+      Height          =   214
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
@@ -196,31 +104,111 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       Multiline       =   True
       ReadOnly        =   False
       Scope           =   0
-      TabIndex        =   4
+      TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   154
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   366
+      Width           =   230
    End
-   Begin NanofactoryRefinery Refinery
+   Begin TextField OriginalTextField
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   22
+      Hint            =   ""
       Index           =   -2147483648
+      Italic          =   False
+      Left            =   262
+      LockBottom      =   False
       LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
       Scope           =   0
+      TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   52
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   166
+   End
+   Begin TextField AsciiTextField
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   22
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   262
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   86
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   166
    End
    Begin PushButton PushButton1
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "Button"
+      Caption         =   "Bulk Input"
       Default         =   False
       Enabled         =   True
       FontName        =   "System"
@@ -230,7 +218,7 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   306
+      Left            =   320
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -238,75 +226,197 @@ Begin ContainerControl NanofactoryRefineryContainerControl
       LockTop         =   True
       MacButtonStyle  =   "0"
       Scope           =   0
-      TabIndex        =   5
+      TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   90
+      Top             =   246
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   80
+      Width           =   108
+   End
+   Begin TextArea TextArea1
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      Height          =   114
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   262
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   120
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   166
    End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Function GetOre(WantedMaterial As Material) As Integer
-		  'Var Result = 0
-		  '
-		  'Var Got As New Dictionary
-		  'Var Need As New Dictionary
-		  'While Need.KeyCount > 0
-		  'For Each Entry As DictionaryEntry In Need
-		  'Var NeedMaterial As Material = Need.Key
-		  'Var Amount As Integer = Need.Value
-		  'If NeedMaterial.Name = "ORE" Then
-		  'Result = Result + Amount
-		  'Continue
-		  'End If
-		  '
-		  '
-		  'Next
-		  'Wend
-		  '
-		  'Return Result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub InitializeNanofactory()
-		  Refinery.Initialize Firmware
+		Sub Reset()
+		  AsciiTextArea.Value = ""
+		  CurrentPosition = New Point
+		  Tiles = New Dictionary
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
-		Firmware As String
+		Buffer As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		CharsAppeared() As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		CurrentPosition As Point
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Program As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Tiles As Dictionary
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
-#tag Events UpgradeFirmwarePushButton
+#tag Events LoadProgramPushButton
 	#tag Event
 		Sub Action()
 		  Var d As New CsvDialog
-		  d.Csv = Firmware
-		  d.Title = "Paste the latest firmware:"
+		  d.Csv = Program
+		  d.Title = "Load program"
 		  d.ShowModalWithin Self.Window
 		  If d.Csv = "" Then Return
 		  
-		  Firmware = d.Csv
-		  InitializeNanofactory
+		  Reset
+		  Program = d.Csv
+		  AsciiComputer.LoadProgram Program
+		  AsciiComputer.Run
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events AsciiComputer
+	#tag Event
+		Sub Output(Message As Integer)
+		  AsciiTextArea.AddText Chr(Message) + EndOfLine
+		  
+		  'Select Case Message
+		  'Case 10
+		  'CurrentPosition.Y = CurrentPosition.Y + 1
+		  'CurrentPosition.X = -1
+		  'Else
+		  'CurrentPosition.X = CurrentPosition.X + 1
+		  'End Select
+		  '
+		  'Var X, Y As Integer
+		  'X = CurrentPosition.X
+		  'Y = CurrentPosition.Y
+		  'Var Key As String = X.ToString + "," + Y.ToString
+		  '
+		  'Tiles.Value(Key) = Chr(Message)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Finished()
+		  Var Result As Integer
+		  For Each TileEntry As DictionaryEntry In Tiles
+		    Var KeyParts() As String = TileEntry.Key.StringValue.Split(",")
+		    Var Pos As New Point(KeyParts(0).ToInteger, KeyParts(1).ToInteger)
+		    Var Tile As String = TileEntry.Value
+		    
+		    Var X, Y As Integer
+		    Var Key, North, South, West, East As String
+		    
+		    Var NorthPos As New Point(Pos.X, Pos.Y - 1)
+		    Var SouthPos As New Point(Pos.X, Pos.Y + 1)
+		    Var WestPos As New Point(Pos.X - 1, Pos.Y)
+		    Var EastPos As New Point(Pos.X + 1, Pos.Y)
+		    
+		    For Each PositionToCheck As Point In Array(NorthPos, SouthPos, WestPos, EastPos)
+		      X = PositionToCheck.X
+		      Y = PositionToCheck.Y
+		      Key = X.ToString + "," + Y.ToString
+		      Var CurrentTile As String = Tiles.Lookup(Key, "?")
+		      If CurrentTile <> "#" Then
+		        Continue For TileEntry
+		      End If
+		    Next
+		    
+		    Result = Result + Pos.X * Pos.Y
+		    AsciiTextArea.AddText Pos.X.ToString + "," + Pos.Y.ToString + EndOfLine
+		  Next
+		  
+		  MessageDialog.Show Result.ToString
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OriginalTextField
+	#tag Event
+		Sub TextChange()
+		  AsciiTextField.Value = ""
+		  Var Chars() As String = OriginalTextField.Value.Split("")
+		  Var Result As String
+		  For Each Char As String In Chars
+		    Result = Result + Asc(Char).ToString
+		  Next
+		  
+		  AsciiTextField.Value = Result + "10"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  BuildLogTextArea.AddText Refinery.GetOreRequiredForMaterial("FUEL").ToString + EndOfLine
+		  Var BulkInput As String = TextArea1.Value
+		  
+		  For Each Line As String In BulkInput.Split(EndOfLine)
+		    Var Chars() As String = Line.Trim.Split("")
+		    For Each Char As String In Chars
+		      AsciiComputer.AddInput Asc(Char)
+		    Next
+		    AsciiComputer.AddInput 10
+		  Next
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -528,7 +638,15 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Firmware"
+		Name="Program"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Buffer"
 		Visible=false
 		Group="Behavior"
 		InitialValue=""

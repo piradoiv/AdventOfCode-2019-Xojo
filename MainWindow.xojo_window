@@ -50,7 +50,6 @@ Begin Window MainWindow
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   "True"
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -69,7 +68,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -102,7 +100,6 @@ Begin Window MainWindow
          GridSize        =   4
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -133,7 +130,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -163,7 +159,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -194,7 +189,6 @@ Begin Window MainWindow
          HasBackgroundColor=   False
          Height          =   400
          HighestOutputSignal=   0
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -227,7 +221,6 @@ Begin Window MainWindow
          HasBackgroundColor=   False
          Height          =   400
          ImageStr        =   ""
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -257,7 +250,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -287,7 +279,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -319,7 +310,6 @@ Begin Window MainWindow
          EraseBackground =   True
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -353,7 +343,6 @@ Begin Window MainWindow
          GameCartdrige   =   ""
          HasBackgroundColor=   False
          Height          =   400
-         Index           =   -2147483648
          InitialParent   =   "AppPagePanel"
          Left            =   0
          LockBottom      =   True
@@ -416,7 +405,6 @@ Begin Window MainWindow
             EraseBackground =   True
             HasBackgroundColor=   False
             Height          =   333
-            Index           =   -2147483648
             InitialParent   =   "FuelTabPanel"
             Left            =   20
             LockBottom      =   False
@@ -447,7 +435,6 @@ Begin Window MainWindow
             Firmware        =   ""
             HasBackgroundColor=   False
             Height          =   333
-            Index           =   -2147483648
             InitialParent   =   "FuelTabPanel"
             Left            =   20
             LockBottom      =   False
@@ -486,7 +473,7 @@ Begin Window MainWindow
          Panels          =   ""
          Scope           =   0
          SmallTabs       =   False
-         TabDefinition   =   "Hull Painting\rRepair Droid"
+         TabDefinition   =   "Hull Painting\rRepair Droid\rASCII"
          TabIndex        =   0
          TabPanelIndex   =   10
          TabStop         =   True
@@ -494,7 +481,7 @@ Begin Window MainWindow
          Top             =   12
          Transparent     =   False
          Underline       =   False
-         Value           =   1
+         Value           =   2
          Visible         =   True
          Width           =   560
          Begin HullContainerControl HullPainting
@@ -509,7 +496,6 @@ Begin Window MainWindow
             EraseBackground =   True
             HasBackgroundColor=   False
             Height          =   310
-            Index           =   -2147483648
             InitialParent   =   "DroidsTabPanel"
             Left            =   40
             LockBottom      =   True
@@ -541,7 +527,6 @@ Begin Window MainWindow
             EraseBackground =   True
             HasBackgroundColor=   False
             Height          =   310
-            Index           =   -2147483648
             InitialParent   =   "DroidsTabPanel"
             LastMovement    =   ""
             Left            =   40
@@ -559,6 +544,35 @@ Begin Window MainWindow
             Transparent     =   True
             Visible         =   True
             Width           =   520
+         End
+         Begin AsciiContainerControl AsciiContainerControl1
+            AllowAutoDeactivate=   True
+            AllowFocus      =   False
+            AllowFocusRing  =   False
+            AllowTabs       =   True
+            Backdrop        =   0
+            BackgroundColor =   &cFFFFFF00
+            DoubleBuffer    =   False
+            Enabled         =   True
+            EraseBackground =   True
+            HasBackgroundColor=   False
+            Height          =   340
+            InitialParent   =   "DroidsTabPanel"
+            Left            =   20
+            LockBottom      =   True
+            LockedInPosition=   False
+            LockLeft        =   True
+            LockRight       =   True
+            LockTop         =   True
+            Scope           =   0
+            TabIndex        =   0
+            TabPanelIndex   =   3
+            TabStop         =   True
+            Tooltip         =   ""
+            Top             =   40
+            Transparent     =   True
+            Visible         =   True
+            Width           =   560
          End
       End
    End

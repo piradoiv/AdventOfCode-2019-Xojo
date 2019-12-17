@@ -45,7 +45,6 @@ Begin ContainerControl AmplifierContainerControl
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
-      TabStop         =   "True"
       Tooltip         =   ""
       Top             =   0
       Transparent     =   False
@@ -53,7 +52,6 @@ Begin ContainerControl AmplifierContainerControl
       Width           =   42
    End
    Begin IntCodeComputer Computer
-      Enabled         =   True
       Index           =   -2147483648
       InstructionPointer=   0
       LockedInPosition=   False
