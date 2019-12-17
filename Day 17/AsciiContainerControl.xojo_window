@@ -219,11 +219,11 @@ Begin ContainerControl AsciiContainerControl
       InitialParent   =   ""
       Italic          =   False
       Left            =   320
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
       MacButtonStyle  =   "0"
       Scope           =   0
       TabIndex        =   4
